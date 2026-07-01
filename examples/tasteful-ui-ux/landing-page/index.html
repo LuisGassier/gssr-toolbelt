@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kairos — knows when to ship, when to hold</title>
+  <meta name="description" content="Kairos reviews every pull request, deploy, and incident the way your best senior engineer would, then holds, escalates, or ships — and shows exactly why." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2317140f'/%3E%3Cline x1='12' y1='12' x2='12' y2='5' stroke='%23b5502c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='1.6' fill='%23b5502c'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/sections.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="logo">
+        <svg class="logo-mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <line class="mark-hand" x1="12" y1="12" x2="12" y2="5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle class="mark-hand" cx="12" cy="12" r="1.4" fill="currentColor" />
+        </svg>
+        Kairos
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#walkthrough">Walkthrough</a>
+      </nav>
+      <a href="#get-started" class="btn btn-primary btn-sm header-cta">Start free</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">// the judgment layer for CI/CD</span>
+          <h1>Ready and reckless look identical at 2&nbsp;a.m.<br />Kairos tells them apart.</h1>
+          <p class="hero-sub">
+            Kairos reviews every pull request, deploy, and incident the way your best senior
+            engineer would — then holds, escalates, or ships, and logs exactly why.
+          </p>
+          <div class="hero-actions">
+            <a href="#get-started" class="btn btn-primary btn-lg" id="magnetic-cta">Start free</a>
+            <a href="#walkthrough" class="btn btn-ghost btn-lg">See how Kairos decides ↓</a>
+          </div>
+          <p class="hero-meta">No credit card required · First decision in under 5 minutes</p>
+        </div>
+
+        <div class="hero-artifact ledger" data-reveal aria-label="Example excerpt from a Kairos decision log">
+          <div class="ledger-chrome">
+            <span class="ledger-title">kairos — example decisions</span>
+          </div>
+          <ul class="ledger-body">
+            <li class="ledger-row ledger-row--hold">
+              <span class="ledger-time">14:02:11</span>
+              <span class="ledger-tag">held</span>
+              <span class="ledger-detail">2 checks failing on billing/refunds.ts</span>
+            </li>
+            <li class="ledger-row ledger-row--go">
+              <span class="ledger-time">14:02:47</span>
+              <span class="ledger-tag">merged</span>
+              <span class="ledger-detail">docs-only change, no review required</span>
+            </li>
+            <li class="ledger-row ledger-row--warn">
+              <span class="ledger-time">14:03:15</span>
+              <span class="ledger-tag">escalated</span>
+              <span class="ledger-detail">touches billing/, routed to @priya</span>
+            </li>
+            <li class="ledger-row ledger-row--go">
+              <span class="ledger-time">14:04:02</span>
+              <span class="ledger-tag">shipped</span>
+              <span class="ledger-detail">staging → prod, 0 incidents</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="capabilities" id="capabilities">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Capabilities</span>
+          <h2>One system that reviews, decides, and remembers why.</h2>
+        </div>
+
+        <div class="capability-grid">
+          <article class="capability-feature" data-reveal>
+            <div>
+              <span class="eyebrow">Decision engine</span>
+              <h3>Every change gets evaluated before it gets merged.</h3>
+              <p>Kairos checks blast radius, test coverage, and who's touched this code before — then decides to hold, auto-merge, or pull in a reviewer. No YAML thresholds to babysit.</p>
+            </div>
+            <div class="checklist" aria-hidden="true">
+              <div class="checklist-row is-done">tests passing</div>
+              <div class="checklist-row is-done">no billing/ files touched</div>
+              <div class="checklist-row is-pending">2 reviews required — auto-requested</div>
+            </div>
+          </article>
+
+          <ul class="capability-list" data-reveal>
+            <li class="capability-row">
+              <span class="capability-index">01</span>
+              <div>
+                <h4>Visual builder</h4>
+                <p>Wire up steps, branches, and approvals without hand-writing YAML.</p>
+              </div>
+            </li>
+            <li class="capability-row">
+              <span class="capability-index">02</span>
+              <div>
+                <h4>Reasoning traces</h4>
+                <p>Every hold or escalation is logged in plain language, not just an exit code.</p>
+              </div>
+            </li>
+            <li class="capability-row">
+              <span class="capability-index">03</span>
+              <div>
+                <h4>One-click promote</h4>
+                <p>From green check to production without reaching for a second tool.</p>
+              </div>
+            </li>
+            <li class="capability-row capability-row--chips">
+              <span class="capability-index">04</span>
+              <div>
+                <h4>Works with what you run</h4>
+                <p>No migration, no new infra to stand up.</p>
+                <div class="integration-row" aria-label="Integrates with GitHub, GitLab, Slack, Linear, and Postgres">
+                  <span class="chip">GitHub</span>
+                  <span class="chip">GitLab</span>
+                  <span class="chip">Slack</span>
+                  <span class="chip">Linear</span>
+                  <span class="chip">Postgres</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="walkthrough" id="walkthrough">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Walkthrough</span>
+          <h2>Follow one decision, start to finish.</h2>
+        </div>
+
+        <div class="timeline" data-reveal>
+          <p class="timeline-intro">This is a single pull request moving through Kairos — not a metric, a record of the calls it made.</p>
+
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <span class="timeline-time">14:02</span>
+              <p><strong>Holds the merge.</strong> A PR touching <code>billing/refunds.ts</code> lands with two failing checks. Kairos blocks it and flags exactly which checks failed and why.</p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-time">14:02</span>
+              <p><strong>Merges without asking.</strong> A second, unrelated PR is docs-only. Nothing here needed a human, so nothing waits on one.</p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-time">14:03</span>
+              <p><strong>Escalates instead of auto-merging.</strong> Back on the billing PR, tests are green — but the diff still touches billing logic. Kairos routes it to a second reviewer, because the open question isn't "did it pass," it's "who should sign off."</p>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-time">14:04</span>
+              <p><strong>Promotes and watches.</strong> Once approved, Kairos ships staging → prod and watches the error rate for the next hour before marking the deploy stable.</p>
+            </li>
+          </ol>
+
+          <p class="timeline-close">That's the pattern: not a dashboard of green checkmarks, but a record of judgment calls, each made at the moment it mattered.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final" id="get-started">
+      <div class="container cta-grid" data-reveal>
+        <div class="cta-copy">
+          <h2>Give your pipeline better judgment.</h2>
+          <p>Connect a repo and watch Kairos make its first call in minutes.</p>
+          <a href="#top" class="btn btn-primary btn-lg">Start free</a>
+        </div>
+        <div class="cta-terminal ledger" aria-hidden="true">
+          <div class="ledger-chrome">
+            <span class="ledger-title">terminal</span>
+          </div>
+          <pre>$ npx kairos init
+<span class="ok">✓</span> connected to github.com/acme/api
+<span class="ok">✓</span> first policy generated
+<span class="next">→</span> watching pull requests</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#top" class="logo">
+          <svg class="logo-mark" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9.25" fill="none" stroke="currentColor" stroke-width="1.4" />
+            <line class="mark-hand" x1="12" y1="12" x2="12" y2="5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <circle class="mark-hand" cx="12" cy="12" r="1.4" fill="currentColor" />
+          </svg>
+          Kairos
+        </a>
+        <p class="footer-tagline">kairos (n.) — the exact moment a decision has to be right.</p>
+      </div>
+      <div class="footer-meta">
+        <p class="footer-copy">© 2026 Kairos Labs.</p>
+        <div class="footer-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Status</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js" defer></script>
+</body>
+</html>

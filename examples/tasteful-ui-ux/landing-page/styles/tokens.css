@@ -1,0 +1,93 @@
+/*
+  Design tokens — Ledger
+  Warm paper/ink editorial system built around a single ember accent.
+  Every other stylesheet should reference these variables instead of raw values.
+*/
+
+:root {
+  /* Color: surfaces (paper) */
+  --bg: #f6f1e7;
+  --bg-elevated: #efe6d5;
+  --bg-elevated-2: #e7dac0;
+  --bg-overlay: rgba(246, 241, 231, 0.88);
+
+  /* Color: ink (dark artifact panels — used only where content is genuinely machine output) */
+  --ink: #17140f;
+  --ink-elevated: #201b12;
+  --ink-border: rgba(246, 241, 231, 0.12);
+  --ink-text: #f3ede1;
+  --ink-text-secondary: rgba(243, 237, 225, 0.62);
+
+  /* Color: borders (on paper) */
+  --border: rgba(23, 20, 15, 0.12);
+  --border-strong: rgba(23, 20, 15, 0.24);
+
+  /* Color: text (on paper) */
+  --text-primary: #1c1811;
+  --text-secondary: rgba(28, 24, 17, 0.66);
+  --text-tertiary: rgba(28, 24, 17, 0.48);
+
+  /* Color: accent (ember) */
+  --accent: #b5502c;
+  --accent-strong: #8f3f22;
+  --accent-soft: rgba(181, 80, 44, 0.12);
+  --accent-border: rgba(181, 80, 44, 0.4);
+  --on-accent: #fbf3e6;
+
+  /* Color: signal (functional only — reinforces the label text in the ledger, never used alone) */
+  --signal-hold: #8f3f22;
+  --signal-go: #3f6b4a;
+  --signal-warn: #93691a;
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --fs-eyebrow: 0.8125rem;
+  --fs-body: 1rem;
+  --fs-body-lg: 1.125rem;
+  --fs-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.375rem);
+  --fs-quote: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+
+  /* Radius — restrained and rectilinear, not the soft pill/blob default */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  /* Elevation — no colored glow */
+  --shadow-sm: 0 1px 2px rgba(23, 20, 15, 0.08);
+  --shadow-md: 0 16px 40px -20px rgba(23, 20, 15, 0.35);
+  --shadow-ink: 0 24px 56px -20px rgba(23, 20, 15, 0.45);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-base: 280ms;
+  --dur-slow: 560ms;
+
+  /* Layout */
+  --container-w: 1180px;
+  --header-h: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+  }
+}

@@ -27,7 +27,7 @@ Required baseline:
 5. Read `references/04-execution-modes.md` for the active mode before producing output or code.
 6. Read `references/05-responsive.md` for any page, screen, component, or flow that must work across breakpoints.
 7. Read `references/06-system-consistency.md` whenever the task touches shared primitives, tokens, repeated patterns, or design systems.
-8. Read `references/07-quality-gate.md` before final output to verify the quality gate is met.
+8. Before final delivery or after any audit, read `references/07-quality-gate.md` to catch cliché substitution, fake proof, weak concept translation, and AI-looking design tells.
 
 ## Orchestration Rules
 
@@ -46,4 +46,4 @@ Required baseline:
 - `references/04-execution-modes.md`: creation, improvement, audit, and mode switching rules.
 - `references/05-responsive.md`: responsive behavior and breakpoint protocol.
 - `references/06-system-consistency.md`: component systems, primitives, tokens, and consistency rules.
-- `references/07-quality-gate.md`: final quality gate checklist.
+- `references/07-quality-gate.md`: final quality gate for cliché substitution, fake proof, AI-looking patterns, concept depth, and delivery readiness.

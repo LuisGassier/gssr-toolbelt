@@ -1,0 +1,220 @@
+/* Reusable primitives: header/nav, logomark, buttons, chips, ledger artifact, section heading. */
+
+/* Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+/* Logo + mark — a simple gnomon (sundial hand) inside a dial, standing in for "the moment" */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.logo-mark {
+  flex-shrink: 0;
+  color: var(--text-primary);
+}
+
+.logo-mark .mark-hand {
+  color: var(--accent);
+}
+
+/* Nav */
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav a {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast) ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--text-primary);
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.header-cta {
+  flex-shrink: 0;
+}
+
+/* Buttons — rectilinear, no glow, no pill radius */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform var(--dur-fast) var(--ease-out-expo), background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-6);
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+/* Chips (integration tags) — rectangular, matches the restrained radius scale */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* Section heading, shared across sections */
+
+.section-heading {
+  max-width: 640px;
+  margin-bottom: var(--space-10);
+}
+
+.section-heading h2 {
+  margin-top: var(--space-3);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* Ledger artifact — a real terminal-style panel reused in the hero and the final CTA.
+   This is the one recurring "machine output" motif; everything else stays on paper. */
+
+.ledger {
+  background: var(--ink);
+  border: 1px solid var(--ink-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-ink);
+  overflow: hidden;
+}
+
+.ledger-chrome {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--ink-border);
+}
+
+.ledger-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-text-secondary);
+}
+
+.ledger-body {
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ledger-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.ledger-time {
+  color: var(--ink-text-secondary);
+  flex-shrink: 0;
+}
+
+.ledger-tag {
+  flex-shrink: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.6875rem;
+}
+
+.ledger-row--hold .ledger-tag {
+  color: #d98a63;
+}
+
+.ledger-row--go .ledger-tag {
+  color: #7fb08d;
+}
+
+.ledger-row--warn .ledger-tag {
+  color: #d9b258;
+}
+
+.ledger-detail {
+  color: var(--ink-text);
+}
