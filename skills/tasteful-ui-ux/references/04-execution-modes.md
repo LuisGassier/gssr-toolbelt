@@ -292,6 +292,7 @@ This started as a local visual improvement, but the issue is coming from the sha
 During execution:
 
 - Do not ask unnecessary questions.
+- If the user explicitly invited questions and a material ambiguity is still unresolved, ask the minimum focused question before committing to a direction.
 - Do not avoid judgment.
 - Do not make the client solve design decisions alone.
 - Do not apply visual trends without purpose.

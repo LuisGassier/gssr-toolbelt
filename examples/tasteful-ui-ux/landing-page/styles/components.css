@@ -27,9 +27,8 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.125rem;
+  font-weight: 700;
+  font-size: 1.0625rem;
   letter-spacing: -0.01em;
   color: var(--text-primary);
 }
@@ -150,34 +149,21 @@
   line-height: 1.15;
 }
 
-/* Ledger artifact — a real terminal-style panel reused in the hero and the final CTA.
-   This is the one recurring "machine output" motif; everything else stays on paper. */
+/* Ledger — the recurring device for showing what Kairos actually decided.
+   Plain rows on the same paper as the rest of the page. No panel, no chrome,
+   nothing pretending to be a terminal — just the record itself. */
 
-.ledger {
-  background: var(--ink);
-  border: 1px solid var(--ink-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-ink);
-  overflow: hidden;
-}
-
-.ledger-chrome {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--ink-border);
-}
-
-.ledger-title {
+.ledger-caption {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  letter-spacing: 0.03em;
-  color: var(--ink-text-secondary);
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
 }
 
-.ledger-body {
-  padding: var(--space-4) var(--space-5);
+.ledger-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
 }
 
 .ledger-row {
@@ -185,36 +171,42 @@
   flex-wrap: wrap;
   align-items: baseline;
   gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   line-height: 1.5;
 }
 
+.ledger-row:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
 .ledger-time {
-  color: var(--ink-text-secondary);
+  color: var(--text-tertiary);
   flex-shrink: 0;
 }
 
 .ledger-tag {
   flex-shrink: 0;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: 0.6875rem;
 }
 
 .ledger-row--hold .ledger-tag {
-  color: #d98a63;
+  color: var(--signal-hold);
 }
 
 .ledger-row--go .ledger-tag {
-  color: #7fb08d;
+  color: var(--signal-go);
 }
 
 .ledger-row--warn .ledger-tag {
-  color: #d9b258;
+  color: var(--signal-warn);
 }
 
 .ledger-detail {
-  color: var(--ink-text);
+  color: var(--text-primary);
 }

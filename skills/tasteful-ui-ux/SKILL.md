@@ -24,16 +24,19 @@ Required baseline:
 2. If the task improves or audits an existing UI, also read `references/01-intervention-and-direction.md`.
 3. If the task includes screenshots, mockups, or visual references, also read `references/02-image-analysis.md`.
 4. For any non-trivial task, read `references/03-design-read-and-plan.md` before execution.
-5. Read `references/04-execution-modes.md` for the active mode before producing output or code.
-6. Read `references/05-responsive.md` for any page, screen, component, or flow that must work across breakpoints.
-7. Read `references/06-system-consistency.md` whenever the task touches shared primitives, tokens, repeated patterns, or design systems.
-8. Before final delivery or after any audit, read `references/07-quality-gate.md` to catch cliché substitution, fake proof, weak concept translation, and AI-looking design tells.
+5. If this is an existing business-facing product and the improvement goal is vague, run a client intent checkpoint before execution unless the user explicitly says to proceed without questions.
+6. Read `references/04-execution-modes.md` for the active mode before producing output or code.
+7. Read `references/05-responsive.md` for any page, screen, component, or flow that must work across breakpoints.
+8. Read `references/06-system-consistency.md` whenever the task touches shared primitives, tokens, repeated patterns, or design systems.
+9. Before final delivery or after any audit, read `references/07-quality-gate.md` to catch cliché substitution, fake proof, weak concept translation, and AI-looking design tells.
 
 ## Orchestration Rules
 
 - Preserve functionality, accessibility, semantics, user data, component contracts, routes, analytics hooks, and required brand assets unless the user asks otherwise.
 - Existing UI is evidence, not truth. Improve or replace weak visual, structural, or experiential decisions when needed.
 - Do not ask unnecessary questions. Inspect evidence first, state the design read when useful, then proceed.
+- For real products with vague goals, run a client intent checkpoint before redesigning unless the user explicitly says to proceed without questions.
+- If the user explicitly invites questions and the direction, product positioning, audience, or taste target is still materially ambiguous after inspection, ask 1-3 focused questions before executing.
 - Do not lose responsive thinking, system thinking, or mode-specific discipline just because the task is small.
 - Always connect execution back to the client goal, evidence, constraints, and chosen intervention level.
 

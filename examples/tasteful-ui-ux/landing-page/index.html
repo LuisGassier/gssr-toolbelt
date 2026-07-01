@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kairos — knows when to ship, when to hold</title>
-  <meta name="description" content="Kairos reviews every pull request, deploy, and incident the way your best senior engineer would, then holds, escalates, or ships — and shows exactly why." />
+  <title>Kairos — decides, then explains why</title>
+  <meta name="description" content="Kairos evaluates every pull request, deploy, and incident, then holds, escalates, or ships it — with the reasoning logged." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2317140f'/%3E%3Cline x1='12' y1='12' x2='12' y2='5' stroke='%23b5502c' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='1.6' fill='%23b5502c'/%3E%3C/svg%3E" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/base.css" />
@@ -41,24 +41,22 @@
     <section class="hero" id="top">
       <div class="container hero-grid">
         <div class="hero-content">
-          <span class="eyebrow">// the judgment layer for CI/CD</span>
-          <h1>Ready and reckless look identical at 2&nbsp;a.m.<br />Kairos tells them apart.</h1>
+          <span class="eyebrow">CI/CD judgment layer</span>
+          <h1>Kairos decides. Then explains why.</h1>
           <p class="hero-sub">
-            Kairos reviews every pull request, deploy, and incident the way your best senior
-            engineer would — then holds, escalates, or ships, and logs exactly why.
+            Every pull request, deploy, and incident gets evaluated, decided, and logged —
+            held, escalated, or shipped, with the reasoning attached.
           </p>
           <div class="hero-actions">
             <a href="#get-started" class="btn btn-primary btn-lg" id="magnetic-cta">Start free</a>
-            <a href="#walkthrough" class="btn btn-ghost btn-lg">See how Kairos decides ↓</a>
+            <a href="#walkthrough" class="btn btn-ghost btn-lg">Walk through one decision ↓</a>
           </div>
           <p class="hero-meta">No credit card required · First decision in under 5 minutes</p>
         </div>
 
-        <div class="hero-artifact ledger" data-reveal aria-label="Example excerpt from a Kairos decision log">
-          <div class="ledger-chrome">
-            <span class="ledger-title">kairos — example decisions</span>
-          </div>
-          <ul class="ledger-body">
+        <div class="hero-artifact" data-reveal>
+          <p class="ledger-caption">Example — four decisions from one pipeline</p>
+          <ul class="ledger-list" aria-label="Example decisions Kairos has made">
             <li class="ledger-row ledger-row--hold">
               <span class="ledger-time">14:02:11</span>
               <span class="ledger-tag">held</span>
@@ -88,61 +86,51 @@
       <div class="container">
         <div class="section-heading">
           <span class="eyebrow">Capabilities</span>
-          <h2>One system that reviews, decides, and remembers why.</h2>
+          <h2>What Kairos actually does.</h2>
         </div>
 
-        <div class="capability-grid">
-          <article class="capability-feature" data-reveal>
+        <ul class="capability-list" data-reveal>
+          <li class="capability-row capability-row--primary">
+            <span class="capability-index">01</span>
             <div>
-              <span class="eyebrow">Decision engine</span>
-              <h3>Every change gets evaluated before it gets merged.</h3>
+              <h3>Evaluates every change before it merges.</h3>
               <p>Kairos checks blast radius, test coverage, and who's touched this code before — then decides to hold, auto-merge, or pull in a reviewer. No YAML thresholds to babysit.</p>
+              <ul class="inline-checklist" aria-hidden="true">
+                <li>tests passing</li>
+                <li>no billing/ files touched</li>
+                <li class="is-pending">2 reviews required — auto-requested</li>
+              </ul>
             </div>
-            <div class="checklist" aria-hidden="true">
-              <div class="checklist-row is-done">tests passing</div>
-              <div class="checklist-row is-done">no billing/ files touched</div>
-              <div class="checklist-row is-pending">2 reviews required — auto-requested</div>
+          </li>
+          <li class="capability-row">
+            <span class="capability-index">02</span>
+            <div>
+              <h3>Visual builder</h3>
+              <p>Wire up steps, branches, and approvals without hand-writing YAML.</p>
             </div>
-          </article>
-
-          <ul class="capability-list" data-reveal>
-            <li class="capability-row">
-              <span class="capability-index">01</span>
-              <div>
-                <h4>Visual builder</h4>
-                <p>Wire up steps, branches, and approvals without hand-writing YAML.</p>
+          </li>
+          <li class="capability-row">
+            <span class="capability-index">03</span>
+            <div>
+              <h3>Reasoning traces</h3>
+              <p>Every hold or escalation is logged in plain language, not just an exit code.</p>
+            </div>
+          </li>
+          <li class="capability-row">
+            <span class="capability-index">04</span>
+            <div>
+              <h3>Works with what you run</h3>
+              <p>No migration, no new infra to stand up.</p>
+              <div class="integration-row" aria-label="Integrates with GitHub, GitLab, Slack, Linear, and Postgres">
+                <span class="chip">GitHub</span>
+                <span class="chip">GitLab</span>
+                <span class="chip">Slack</span>
+                <span class="chip">Linear</span>
+                <span class="chip">Postgres</span>
               </div>
-            </li>
-            <li class="capability-row">
-              <span class="capability-index">02</span>
-              <div>
-                <h4>Reasoning traces</h4>
-                <p>Every hold or escalation is logged in plain language, not just an exit code.</p>
-              </div>
-            </li>
-            <li class="capability-row">
-              <span class="capability-index">03</span>
-              <div>
-                <h4>One-click promote</h4>
-                <p>From green check to production without reaching for a second tool.</p>
-              </div>
-            </li>
-            <li class="capability-row capability-row--chips">
-              <span class="capability-index">04</span>
-              <div>
-                <h4>Works with what you run</h4>
-                <p>No migration, no new infra to stand up.</p>
-                <div class="integration-row" aria-label="Integrates with GitHub, GitLab, Slack, Linear, and Postgres">
-                  <span class="chip">GitHub</span>
-                  <span class="chip">GitLab</span>
-                  <span class="chip">Slack</span>
-                  <span class="chip">Linear</span>
-                  <span class="chip">Postgres</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -181,21 +169,11 @@
     </section>
 
     <section class="cta-final" id="get-started">
-      <div class="container cta-grid" data-reveal>
-        <div class="cta-copy">
-          <h2>Give your pipeline better judgment.</h2>
-          <p>Connect a repo and watch Kairos make its first call in minutes.</p>
-          <a href="#top" class="btn btn-primary btn-lg">Start free</a>
-        </div>
-        <div class="cta-terminal ledger" aria-hidden="true">
-          <div class="ledger-chrome">
-            <span class="ledger-title">terminal</span>
-          </div>
-          <pre>$ npx kairos init
-<span class="ok">✓</span> connected to github.com/acme/api
-<span class="ok">✓</span> first policy generated
-<span class="next">→</span> watching pull requests</pre>
-        </div>
+      <div class="container cta-inner" data-reveal>
+        <span class="cta-tag">→ next entry</span>
+        <h2>Connect a repo. Kairos makes the first call.</h2>
+        <p>Your first decision — held, escalated, or shipped — lands in the log within minutes.</p>
+        <a href="#top" class="btn btn-primary btn-lg">Start free</a>
       </div>
     </section>
   </main>

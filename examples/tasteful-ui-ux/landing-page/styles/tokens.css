@@ -11,13 +11,6 @@
   --bg-elevated-2: #e7dac0;
   --bg-overlay: rgba(246, 241, 231, 0.88);
 
-  /* Color: ink (dark artifact panels — used only where content is genuinely machine output) */
-  --ink: #17140f;
-  --ink-elevated: #201b12;
-  --ink-border: rgba(246, 241, 231, 0.12);
-  --ink-text: #f3ede1;
-  --ink-text-secondary: rgba(243, 237, 225, 0.62);
-
   /* Color: borders (on paper) */
   --border: rgba(23, 20, 15, 0.12);
   --border-strong: rgba(23, 20, 15, 0.24);
@@ -39,8 +32,7 @@
   --signal-go: #3f6b4a;
   --signal-warn: #93691a;
 
-  /* Typography */
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  /* Typography — one working type system, no separate "display" register */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
@@ -48,8 +40,8 @@
   --fs-body: 1rem;
   --fs-body-lg: 1.125rem;
   --fs-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
-  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4.375rem);
-  --fs-quote: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --fs-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4rem);
+  --fs-emphasis: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
 
   /* Spacing scale */
   --space-1: 0.25rem;
@@ -71,7 +63,6 @@
   /* Elevation — no colored glow */
   --shadow-sm: 0 1px 2px rgba(23, 20, 15, 0.08);
   --shadow-md: 0 16px 40px -20px rgba(23, 20, 15, 0.35);
-  --shadow-ink: 0 24px 56px -20px rgba(23, 20, 15, 0.45);
 
   /* Motion */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

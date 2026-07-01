@@ -131,6 +131,8 @@ Translate taste into practical choices:
 - system consistency
 - level of novelty
 
+When the task is a real business-facing product with a vague improvement brief, do not rely on taste discovery alone. Run the client intent checkpoint from `references/03-design-read-and-plan.md` if positioning, audience, conversion goal, brand preservation, or content hierarchy would materially change the direction.
+
 ### Direction Clarity Levels
 
 Before asking taste questions, classify the user's direction into one of these levels:
@@ -146,6 +148,7 @@ Before asking taste questions, classify the user's direction into one of these l
 
 Behavior:
 Inspect the evidence, diagnose what feels weak, then propose 2-3 concrete directions. Do not ask abstract design questions first.
+If the user explicitly invited questions and the strongest direction cannot be chosen confidently from evidence alone, ask 1 focused outcome-based question after the proposals or before execution.
 
 2. Vague direction
    The user says things like:
@@ -158,6 +161,7 @@ Inspect the evidence, diagnose what feels weak, then propose 2-3 concrete direct
 
 Behavior:
 Translate the vague word into possible meanings. Ask the user to choose between concrete interpretations, or recommend one if the product context is clear.
+If the recommendation still depends on unknown product or audience intent, ask 1 focused clarification instead of silently choosing.
 
 3. Reference-led direction
    The user provides one or more reference images, screenshots, URLs, or products and says:
@@ -268,6 +272,7 @@ My recommendation: [direction] because [reason].
 Ask the client to choose only after explaining the tradeoffs.
 
 If the client says they do not know, choose the strongest direction and proceed.
+If the user explicitly said questions are welcome, prefer asking them to choose when the directions would produce meaningfully different layouts, hierarchy, or tone.
 
 ### Clarify Vague Taste Words
 
@@ -378,6 +383,8 @@ If the word is ambiguous, either:
 1. infer its likely meaning from evidence and state the interpretation, or
 2. ask one focused clarification, or
 3. propose 2-3 possible interpretations and recommend one.
+
+If the user explicitly invited questions and more than one interpretation remains plausible after reviewing the evidence, prefer option 2 or 3 before execution.
 
 Do not ask the client to define design terminology.
 Translate their words into experience goals and design decisions.

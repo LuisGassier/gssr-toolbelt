@@ -1,4 +1,4 @@
-/* Section-specific layout: hero, capabilities, proof, final CTA, footer. */
+/* Section-specific layout: hero, capabilities, walkthrough, final CTA, footer. */
 
 /* ---------- Hero ---------- */
 
@@ -16,7 +16,7 @@
 @media (min-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
+    align-items: end;
     gap: var(--space-12);
   }
 }
@@ -24,8 +24,8 @@
 .hero-content h1 {
   margin-top: var(--space-5);
   font-size: var(--fs-h1);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.08;
 }
 
@@ -49,8 +49,8 @@
   color: var(--text-tertiary);
 }
 
-.hero-artifact .ledger-body {
-  gap: var(--space-4);
+.hero-artifact {
+  padding-top: var(--space-2);
 }
 
 /* On narrow screens, keep each log line from wrapping into a ragged mess:
@@ -69,83 +69,6 @@
   border-bottom: 1px solid var(--border);
 }
 
-.capability-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-}
-
-@media (min-width: 1024px) {
-  .capability-grid {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    align-items: start;
-    gap: var(--space-10);
-  }
-}
-
-/* The dominant feature panel — the one card-shaped surface in this section,
-   deliberately singular so it reads as "the important one," not a repeated unit. */
-
-.capability-feature {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-}
-
-.capability-feature h3 {
-  margin-top: var(--space-3);
-  font-size: 1.375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-}
-
-.capability-feature p {
-  color: var(--text-secondary);
-  max-width: 46ch;
-}
-
-.checklist {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-}
-
-.checklist-row {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-sm);
-  background: var(--bg-elevated-2);
-  color: var(--text-secondary);
-}
-
-.checklist-row::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.checklist-row.is-done::before {
-  background: var(--signal-go);
-}
-
-.checklist-row.is-pending::before {
-  background: var(--signal-warn);
-}
-
-/* The capability list — plain rows with dividers, not cards.
-   Deliberately different materiality from .capability-feature above. */
-
 .capability-list {
   display: flex;
   flex-direction: column;
@@ -154,7 +77,7 @@
 .capability-row {
   display: flex;
   gap: var(--space-5);
-  padding-block: var(--space-5);
+  padding-block: var(--space-6);
   border-top: 1px solid var(--border);
 }
 
@@ -171,19 +94,58 @@
   padding-top: 0.2em;
 }
 
-.capability-row h4 {
-  font-family: var(--font-sans);
+.capability-row h3 {
   font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--text-primary);
 }
 
 .capability-row p {
   margin-top: var(--space-1);
   color: var(--text-secondary);
   font-size: 0.9375rem;
-  max-width: 46ch;
+  max-width: 50ch;
+}
+
+/* The first row carries the core mechanism, so it gets typographic weight —
+   not a card, not a background, just size and a supporting checklist. */
+
+.capability-row--primary h3 {
+  font-size: 1.375rem;
+  letter-spacing: -0.015em;
+}
+
+.capability-row--primary p {
+  max-width: 52ch;
+}
+
+.inline-checklist {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.inline-checklist li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.inline-checklist li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-go);
+  flex-shrink: 0;
+}
+
+.inline-checklist li.is-pending::before {
+  background: var(--signal-warn);
 }
 
 .integration-row {
@@ -266,9 +228,9 @@
   margin-top: var(--space-8);
   padding-top: var(--space-6);
   border-top: 1px solid var(--border);
-  font-family: var(--font-display);
-  font-size: var(--fs-quote);
-  font-weight: 500;
+  font-size: var(--fs-emphasis);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 56ch;
@@ -291,54 +253,33 @@
   border-bottom: 1px solid var(--border);
 }
 
-.cta-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-  align-items: center;
+.cta-inner {
+  max-width: 560px;
 }
 
-@media (min-width: 1024px) {
-  .cta-grid {
-    grid-template-columns: 1fr 0.85fr;
-    gap: var(--space-12);
-  }
+.cta-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--accent);
 }
 
-.cta-copy h2 {
+.cta-inner h2 {
+  margin-top: var(--space-3);
   font-size: var(--fs-h2);
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.15;
 }
 
-.cta-copy p {
+.cta-inner p {
   margin-top: var(--space-4);
   color: var(--text-secondary);
   font-size: var(--fs-body-lg);
 }
 
-.cta-copy .btn {
+.cta-inner .btn {
   margin-top: var(--space-6);
-}
-
-.cta-terminal pre {
-  margin: 0;
-  padding: var(--space-4) var(--space-5);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  line-height: 1.8;
-  color: var(--ink-text);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.cta-terminal pre .ok {
-  color: #7fb08d;
-}
-
-.cta-terminal pre .next {
-  color: var(--ink-text-secondary);
 }
 
 /* ---------- Footer ---------- */
