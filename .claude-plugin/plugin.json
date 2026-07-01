@@ -1,0 +1,6 @@
+{
+  "name": "gssr-toolbelt",
+  "version": "0.1.0",
+  "description": "Coleccion de skills reutilizables para asistentes de codigo.",
+  "entry": "skills/llms.txt"
+}
