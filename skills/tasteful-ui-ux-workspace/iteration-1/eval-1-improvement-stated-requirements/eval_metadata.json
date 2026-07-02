@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "improvement-stated-requirements",
+  "prompt": "Quiero mejorar esta landing page. Necesita sentirse más editorial y oscura, pero sin tocar la navegación de arriba ni el formulario de email. También quiero que resalte más el pricing.",
+  "assertions": [
+    "The response explicitly lists the user's stated requirements before making changes (editorial, darker, keep nav, keep email form, emphasize pricing)",
+    "The output HTML preserves a top navigation element",
+    "The output HTML preserves an email input/signup form",
+    "The output HTML uses a dark color palette (dark background, light text) — not white or light gray",
+    "The pricing section has more visual prominence than in the original (larger type, more space, or hero-level placement)"
+  ]
+}

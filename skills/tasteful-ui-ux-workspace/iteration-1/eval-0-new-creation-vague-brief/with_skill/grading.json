@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "The agent asked at least 2 clarifying questions about product direction, audience, or aesthetic before producing UI code",
+      "passed": true,
+      "evidence": "response.md opens with a formal intake: lists stated requirements, then asks 5 focused questions (urgency vs review, references, device priority, first data point, what to avoid) before writing any HTML. metrics.json: asked_questions_first: true, number_of_questions_asked: 5"
+    },
+    {
+      "text": "The response explicitly states a design direction (e.g. visual style, tone, hierarchy approach) before producing any HTML",
+      "passed": true,
+      "evidence": "response.md includes self-answered assumptions that define direction: 'urgency-first tool not a BI dashboard', 'close to Linear or Toggl', 'serious tool, data first, no decoration'. Direction stated before HTML. metrics.json: stated_design_direction_before_html: true"
+    },
+    {
+      "text": "The produced HTML does not use a generic indigo/purple palette with three equal stat cards as the primary layout",
+      "passed": false,
+      "evidence": "HTML still uses #3B5BDB and #6366F1 (blue-indigo range) as primary accent. While the layout is urgency-first (alert strip + overdue table, not equal stat cards), the color choice remains in the generic indigo family. The layout passes but the palette does not."
+    },
+    {
+      "text": "The dashboard content is specific to invoice/accounting workflows (not generic SaaS metrics)",
+      "passed": true,
+      "evidence": "Dashboard includes: overdue invoices table, 'Facturas por cobrar', 'Vencido' stat, MXN currency, 'Enviar recordatorio' action, client health cards with invoice amounts. Fully accounting-specific, not generic SaaS."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  }
+}

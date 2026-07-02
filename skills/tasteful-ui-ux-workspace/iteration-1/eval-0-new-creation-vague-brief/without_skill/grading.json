@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "The agent asked at least 2 clarifying questions about product direction, audience, or aesthetic before producing UI code",
+      "passed": false,
+      "evidence": "Agent went directly to design without asking any questions. metrics.json: asked_questions_first: false, number_of_questions_asked: 0. Response started immediately with design rationale."
+    },
+    {
+      "text": "The response explicitly states a design direction (e.g. visual style, tone, hierarchy approach) before producing any HTML",
+      "passed": true,
+      "evidence": "response.md describes the design direction as 'indigo/slate professional palette (Inter font), card-based layout' before HTML. metrics.json: stated_design_direction_before_html: true"
+    },
+    {
+      "text": "The produced HTML does not use a generic indigo/purple palette with three equal stat cards as the primary layout",
+      "passed": false,
+      "evidence": "HTML uses #4F46E5 (Tailwind indigo-600, one of the most overused SaaS colors) as --primary, with linear-gradient(135deg, #818CF8, #4F46E5) on KPI cards. Four equal KPI cards in a row are the primary layout element. Both palette AND layout are generic."
+    },
+    {
+      "text": "The dashboard content is specific to invoice/accounting workflows (not generic SaaS metrics)",
+      "passed": true,
+      "evidence": "Dashboard includes Facturas, Clientes, MXN currency, overdue invoice alert, client health section. Named the product 'ContaFlow'. Content is accounting-specific."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 2,
+    "total": 4,
+    "pass_rate": 0.50
+  }
+}

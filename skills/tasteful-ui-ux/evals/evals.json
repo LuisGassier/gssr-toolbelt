@@ -1,0 +1,42 @@
+{
+  "skill_name": "tasteful-ui-ux",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Estoy construyendo un SaaS para contadores freelance que gestionan facturas de sus clientes. Diseña el dashboard principal.",
+      "expected_output": "The agent interviews the user before designing — asking about audience, aesthetic direction, or key user actions. It then produces a dashboard with design choices that are specific to accounting/invoicing, not a generic blue-card layout.",
+      "files": [],
+      "assertions": [
+        "The agent asked at least 2 clarifying questions about product direction, audience, or aesthetic before producing UI code",
+        "The response explicitly states a design direction (e.g. visual style, tone, hierarchy approach) before producing any HTML",
+        "The produced HTML does not use a generic indigo/purple palette with three equal stat cards as the primary layout",
+        "The dashboard content is specific to invoice/accounting workflows (not generic SaaS metrics)"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Quiero mejorar esta landing page. Necesita sentirse más editorial y oscura, pero sin tocar la navegación de arriba ni el formulario de email. También quiero que resalte más el pricing.",
+      "expected_output": "The agent explicitly lists all stated requirements before proceeding, then produces a redesign that is editorial + dark in feel, preserves the top nav and email form, and gives pricing more visual prominence.",
+      "files": ["evals/fixtures/landing-page-generic.html"],
+      "assertions": [
+        "The response explicitly lists the user's stated requirements before making changes (editorial, darker, keep nav, keep email form, emphasize pricing)",
+        "The output HTML preserves a top navigation element",
+        "The output HTML preserves an email input/signup form",
+        "The output HTML uses a dark color palette (dark background, light text) — not white or light gray",
+        "The pricing section has more visual prominence than in the original (larger type, more space, or hero-level placement)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Mi página de login se ve horrible, muy genérica y AI-generated. Hazla mejor.",
+      "expected_output": "The agent identifies specific reasons the current login page looks AI-generated, asks about or states a design direction, and produces an improved login page that avoids the clichés it identified.",
+      "files": ["evals/fixtures/login-page-generic.html"],
+      "assertions": [
+        "The agent names specific visual patterns that make the current page feel AI-generated (e.g. purple gradient background, white card, identical rounded corners everywhere)",
+        "The agent does not just add more gradients, glassmorphism, or glow effects as the primary fix",
+        "The response states a design direction or rationale before producing HTML",
+        "The output HTML is visually distinct from the original generic template"
+      ]
+    }
+  ]
+}

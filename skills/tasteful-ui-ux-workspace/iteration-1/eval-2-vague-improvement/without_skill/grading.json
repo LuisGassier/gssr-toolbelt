@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "The agent names specific visual patterns that make the current page feel AI-generated (e.g. purple gradient background, white card, identical rounded corners everywhere)",
+      "passed": true,
+      "evidence": "response.md names 6 specific patterns: the exact gradient value (#667eea → #764ba2), white floating card over gradient, #4F46E5 indigo-600, 'Welcome back!' generic copy, decorative shadow box-shadow: 0 20px 60px, and the card-floating pattern as 'primo directo del glassmorphism'. Equally specific as with_skill."
+    },
+    {
+      "text": "The agent does not just add more gradients, glassmorphism, or glow effects as the primary fix",
+      "passed": true,
+      "evidence": "Fix is same structural approach: split editorial layout (dark left panel + white right panel). 'Sin gradientes, sin sombras decorativas, sin glassmorphism.' metrics.json: avoided_more_gradients_or_glass: true."
+    },
+    {
+      "text": "The response states a design direction or rationale before producing HTML",
+      "passed": true,
+      "evidence": "Response clearly states direction before HTML: split two-column layout, charcoal/near-black left panel, white right form panel, terracotta accent (#d4622a). Direction justified before any code. metrics.json: stated_design_direction_before_html: true."
+    },
+    {
+      "text": "The output HTML is visually distinct from the original generic template",
+      "passed": true,
+      "evidence": "HTML uses .brand-panel + .form-panel split layout with solid dark background (no gradient), terracotta accent instead of indigo. Structurally completely different from original centered card on gradient."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

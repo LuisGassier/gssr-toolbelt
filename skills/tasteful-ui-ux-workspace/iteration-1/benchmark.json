@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "skill_name": "tasteful-ui-ux",
+    "skill_path": "/Users/luisgassier/Desktop/avc/gssr-toolbelt/skills/tasteful-ui-ux",
+    "executor_model": "claude-sonnet-4-6",
+    "timestamp": "2026-07-02T00:00:00Z",
+    "evals_run": [0, 1, 2],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "new-creation-vague-brief",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 653.6,
+        "tokens": 65628,
+        "tool_calls": 13,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Asked at least 2 clarifying questions before producing UI code", "passed": true, "evidence": "Asked 5 questions via formal intake. metrics.json: asked_questions_first: true"},
+        {"text": "Explicitly states design direction before HTML", "passed": true, "evidence": "Self-answered assumptions establish direction before any code"},
+        {"text": "No generic indigo/purple palette with three equal stat cards", "passed": false, "evidence": "Uses #3B5BDB/#6366F1 (indigo family). Layout is urgency-first (not equal cards) but palette is still generic blue."},
+        {"text": "Dashboard content specific to invoice/accounting", "passed": true, "evidence": "Facturas, MXN, overdue table, 'Enviar recordatorio', client health — fully accounting-specific"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "new-creation-vague-brief",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.50,
+        "passed": 2,
+        "failed": 2,
+        "total": 4,
+        "time_seconds": 325.9,
+        "tokens": 42380,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Asked at least 2 clarifying questions before producing UI code", "passed": false, "evidence": "No questions asked. Went directly to design. metrics.json: asked_questions_first: false"},
+        {"text": "Explicitly states design direction before HTML", "passed": true, "evidence": "States 'indigo/slate professional palette' before HTML"},
+        {"text": "No generic indigo/purple palette with three equal stat cards", "passed": false, "evidence": "#4F46E5 (Tailwind indigo-600) as --primary, 4 equal KPI cards with indigo gradient as primary layout"},
+        {"text": "Dashboard content specific to invoice/accounting", "passed": true, "evidence": "Facturas, Clientes, MXN, overdue alert. Specific to accounting domain."}
+      ],
+      "notes": ["Classic indigo/card pattern with no interview step — exactly the pattern we're fixing"]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "improvement-stated-requirements",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 339.8,
+        "tokens": 58894,
+        "tool_calls": 16,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Explicitly lists all stated requirements before making changes", "passed": true, "evidence": "response.md opens with formal 'Requisitos declarados' section listing all 4 requirements before any design work"},
+        {"text": "Preserves top navigation", "passed": true, "evidence": "nav element present. response.md confirms HTML/CSS identical to original."},
+        {"text": "Preserves email signup form", "passed": true, "evidence": "7 matches for type=email in HTML. Form preserved."},
+        {"text": "Dark color palette used", "passed": true, "evidence": "--bg-base: #0C0C0E, --bg-surface: #111115 — dark system throughout"},
+        {"text": "Pricing section has more visual prominence", "passed": true, "evidence": "50px font, isolated section with borders, Pro card with solid indigo background and inverted white text"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "improvement-stated-requirements",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.80,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 204.8,
+        "tokens": 34269,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Explicitly lists all stated requirements before making changes", "passed": false, "evidence": "response.md starts directly with design direction. Requirements mentioned in passing at the end ('Qué no toqué') but never formally listed as a pre-execution checklist."},
+        {"text": "Preserves top navigation", "passed": true, "evidence": "nav element present, confirmed byte-identical in response"},
+        {"text": "Preserves email signup form", "passed": true, "evidence": "5 matches for type=email in HTML"},
+        {"text": "Dark color palette used", "passed": true, "evidence": "#0A0A0C base, #F0EDE8 warm off-white text"},
+        {"text": "Pricing section has more visual prominence", "passed": true, "evidence": "56px Playfair Display pricing, double-border Popular card, glow effect"}
+      ],
+      "notes": ["Good output quality but no formal requirement acknowledgment step"]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "vague-improvement-ai-generated",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 391.9,
+        "tokens": 58142,
+        "tool_calls": 14,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Names specific visual patterns causing AI-generated feel", "passed": true, "evidence": "Named exact gradient value, #4F46E5 as 'Tailwind indigo-600', box-shadow value, microcopy, floating card — 5 patterns with code references. Asked 4 questions before touching CSS."},
+        {"text": "Does not just add gradients/glassmorphism/glow", "passed": true, "evidence": "Split editorial layout. Dark brand panel + white form. No gradient, no glass, no glow."},
+        {"text": "States design direction before HTML", "passed": true, "evidence": "Direction stated with product rationale (two zones = sync metaphor) before any code"},
+        {"text": "Output visually distinct from original", "passed": true, "evidence": "Split panel vs centered card, near-black + white vs purple gradient, animated SVG diagram vs empty space"}
+      ],
+      "notes": ["Also asked 4 questions before designing — key intake behavior"]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "vague-improvement-ai-generated",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 101.2,
+        "tokens": 22172,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Names specific visual patterns causing AI-generated feel", "passed": true, "evidence": "Named 6 specific patterns with exact values: the diagonal gradient hex values, #4F46E5 as Tailwind default, 'card flotante', decorative shadow, generic copy, glassmorphism kinship"},
+        {"text": "Does not just add gradients/glassmorphism/glow", "passed": true, "evidence": "Same structural approach: split panel layout, terracotta accent, no gradients or glass"},
+        {"text": "States design direction before HTML", "passed": true, "evidence": "Two-column editorial layout direction stated before code"},
+        {"text": "Output visually distinct from original", "passed": true, "evidence": "Split panel layout with dark/white panels vs original centered card on gradient. Terracotta accent vs indigo."}
+      ],
+      "notes": ["Strong baseline — eval 2 assertions test output quality which both agents achieved. Key difference is with_skill asked questions, without_skill didn't — but assertions don't capture that for this eval."]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 0.917, "stddev": 0.132, "min": 0.75, "max": 1.0},
+      "time_seconds": {"mean": 461.8, "stddev": 157.9, "min": 339.8, "max": 653.6},
+      "tokens": {"mean": 60888, "stddev": 4046, "min": 58142, "max": 65628}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.767, "stddev": 0.265, "min": 0.50, "max": 1.0},
+      "time_seconds": {"mean": 210.6, "stddev": 112.6, "min": 101.2, "max": 325.9},
+      "tokens": {"mean": 32940, "stddev": 10136, "min": 22172, "max": 42380}
+    },
+    "delta": {
+      "pass_rate": "+0.15",
+      "time_seconds": "+251.2",
+      "tokens": "+27948"
+    }
+  },
+  "notes": [
+    "The most decisive difference is eval 0: with_skill asked 5 questions before designing, without_skill asked 0. This is the core behavior change from the new SKILL.md intake step.",
+    "Eval 1 shows the requirement acknowledgment behavior: with_skill formally listed all requirements before proceeding, without_skill did not.",
+    "Eval 2 is a tie on assertions — both agents independently converged on a split-panel layout and named the same AI patterns. The with_skill edge (asking questions first) isn't captured by eval 2's current assertions. Consider adding an assertion for this.",
+    "The skill costs ~2x tokens and ~2x time. Expected tradeoff for a skill that reads reference files and does more deliberate planning.",
+    "Palette specificity (eval 0 assertion 3) failed for both agents — with_skill used #3B5BDB, without_skill used #4F46E5. Both are blue/indigo family. The SKILL.md's anti-generic section needs to more actively push color specificity, not just layout specificity."
+  ]
+}

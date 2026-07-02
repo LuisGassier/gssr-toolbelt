@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "eval_name": "vague-improvement-ai-generated",
+  "prompt": "Mi página de login se ve horrible, muy genérica y AI-generated. Hazla mejor.",
+  "assertions": [
+    "The agent names specific visual patterns that make the current page feel AI-generated (e.g. purple gradient background, white card, identical rounded corners everywhere)",
+    "The agent does not just add more gradients, glassmorphism, or glow effects as the primary fix",
+    "The response states a design direction or rationale before producing HTML",
+    "The output HTML is visually distinct from the original generic template"
+  ]
+}

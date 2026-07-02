@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "The agent names specific visual patterns that make the current page feel AI-generated (e.g. purple gradient background, white card, identical rounded corners everywhere)",
+      "passed": true,
+      "evidence": "Agent named: linear-gradient(135deg, #667eea 0%, #764ba2 100%) by exact value, #4F46E5 as 'Tailwind indigo-600 / the most AI-chosen SaaS color in existence', box-shadow: 0 20px 60px rgba(0,0,0,0.15) as decorative shadow with no purpose, 'Welcome back!' microcopy, and centered floating white card pattern. 5 specific patterns with code references."
+    },
+    {
+      "text": "The agent does not just add more gradients, glassmorphism, or glow effects as the primary fix",
+      "passed": true,
+      "evidence": "Fix is a split editorial layout (dark brand panel + white form panel). Primary button is dark (#0D1117). No gradient backgrounds, no glassmorphism, no glow. metrics.json: avoided_more_gradients_or_glass: true."
+    },
+    {
+      "text": "The response states a design direction or rationale before producing HTML",
+      "passed": true,
+      "evidence": "Response states a specific direction before HTML: 'net-new direction — dark brand panel (44%) + white form panel (56%), replacing the floating card entirely. Justified by FlowSync product logic (sync between tools = two zones).' metrics.json: stated_design_direction_before_html: true."
+    },
+    {
+      "text": "The output HTML is visually distinct from the original generic template",
+      "passed": true,
+      "evidence": "Original: purple diagonal gradient background + floating white card + indigo buttons. Output: split-panel layout with dark brand panel containing SVG workflow diagram + white form panel + near-black primary button. Fundamentally different layout and color system."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  }
+}

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — FlowSync</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      display: flex;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Left brand panel ── */
+    .brand-panel {
+      width: 44%;
+      background: #0d0d0d;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 48px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle texture — a single thin grid line pattern, no gradient */
+    .brand-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .brand-logo {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-logo span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d4622a;
+      margin-left: 3px;
+      vertical-align: middle;
+      margin-bottom: 2px;
+    }
+
+    .brand-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-headline {
+      font-size: 36px;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .brand-headline strong {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .brand-sub {
+      font-size: 14px;
+      color: #6b6b6b;
+      line-height: 1.6;
+      max-width: 300px;
+    }
+
+    .brand-features {
+      position: relative;
+      z-index: 1;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .brand-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #4a4a4a;
+    }
+
+    .brand-features li::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: #d4622a;
+      flex-shrink: 0;
+    }
+
+    /* ── Right form panel ── */
+    .form-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 64px 48px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .form-heading {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: #0d0d0d;
+      margin-bottom: 6px;
+    }
+
+    .form-subheading {
+      font-size: 14px;
+      color: #8a8a8a;
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    /* Google SSO button — high up, before the form, as most users prefer it */
+    .btn-google {
+      width: 100%;
+      padding: 11px 16px;
+      background: #ffffff;
+      color: #1a1a1a;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: border-color 0.15s, background 0.15s;
+      margin-bottom: 28px;
+    }
+
+    .btn-google:hover {
+      border-color: #b0b0b0;
+      background: #fafafa;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #ebebeb;
+    }
+
+    .divider span {
+      font-size: 12px;
+      color: #b0b0b0;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* Form fields */
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #3a3a3a;
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #1a1a1a;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .field input::placeholder {
+      color: #c0c0c0;
+    }
+
+    .field input:focus {
+      border-color: #0d0d0d;
+    }
+
+    /* Password row: label + forgot link on same line */
+    .password-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .password-header label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #3a3a3a;
+    }
+
+    .forgot-link {
+      font-size: 12px;
+      color: #8a8a8a;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .forgot-link:hover {
+      color: #1a1a1a;
+    }
+
+    .btn-signin {
+      width: 100%;
+      padding: 12px;
+      background: #0d0d0d;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-signin:hover {
+      background: #2a2a2a;
+    }
+
+    .signin-footer {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #8a8a8a;
+      text-align: center;
+    }
+
+    .signin-footer a {
+      color: #d4622a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .signin-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Responsive: stack on small screens ── */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .brand-panel {
+        width: 100%;
+        padding: 32px 28px;
+      }
+
+      .brand-headline {
+        font-size: 26px;
+        margin-bottom: 12px;
+      }
+
+      .brand-features {
+        display: none;
+      }
+
+      .brand-body {
+        margin: 24px 0;
+      }
+
+      .form-panel {
+        padding: 40px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left: brand panel -->
+  <aside class="brand-panel">
+    <div class="brand-logo">
+      FlowSync<span></span>
+    </div>
+
+    <div class="brand-body">
+      <h2 class="brand-headline">
+        Your work,<br />
+        <strong>in sync.</strong>
+      </h2>
+      <p class="brand-sub">
+        Connect your team, automate your workflows, and ship faster — without the noise.
+      </p>
+    </div>
+
+    <ul class="brand-features">
+      <li>Real-time collaboration across every project</li>
+      <li>Integrations with 80+ tools you already use</li>
+      <li>Automated handoffs, zero micromanagement</li>
+    </ul>
+  </aside>
+
+  <!-- Right: form panel -->
+  <main class="form-panel">
+    <div class="form-container">
+      <h1 class="form-heading">Sign in</h1>
+      <p class="form-subheading">Good to have you back.</p>
+
+      <!-- SSO first — it's the fastest path for most users -->
+      <button type="button" class="btn-google">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="divider"><span>or</span></div>
+
+      <form>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" />
+        </div>
+
+        <div class="field">
+          <div class="password-header">
+            <label for="password">Password</label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+
+        <button type="submit" class="btn-signin">Sign in</button>
+      </form>
+
+      <p class="signin-footer">
+        No account yet? <a href="#">Create one free</a>
+      </p>
+    </div>
+  </main>
+
+</body>
+</html>

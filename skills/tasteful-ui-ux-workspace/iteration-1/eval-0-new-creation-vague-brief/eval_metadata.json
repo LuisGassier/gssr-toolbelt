@@ -1,0 +1,11 @@
+{
+  "eval_id": 0,
+  "eval_name": "new-creation-vague-brief",
+  "prompt": "Estoy construyendo un SaaS para contadores freelance que gestionan facturas de sus clientes. Diseña el dashboard principal.",
+  "assertions": [
+    "The agent asked at least 2 clarifying questions about product direction, audience, or aesthetic before producing UI code",
+    "The response explicitly states a design direction (e.g. visual style, tone, hierarchy approach) before producing any HTML",
+    "The produced HTML does not use a generic indigo/purple palette with three equal stat cards as the primary layout",
+    "The dashboard content is specific to invoice/accounting workflows (not generic SaaS metrics)"
+  ]
+}

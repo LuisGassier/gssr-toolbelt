@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly lists the user's stated requirements before making changes (editorial, darker, keep nav, keep email form, emphasize pricing)",
+      "passed": false,
+      "evidence": "response.md jumps immediately to design direction and explains what was done. Nav and email are mentioned under 'Qué no toqué' section at the end as confirmation, not as a pre-execution checklist. There is no formal requirement acknowledgment step at the start."
+    },
+    {
+      "text": "The output HTML preserves a top navigation element",
+      "passed": true,
+      "evidence": "grep for <nav|<header returned 1 match. Agent confirmed nav preserved byte-identical."
+    },
+    {
+      "text": "The output HTML preserves an email input/signup form",
+      "passed": true,
+      "evidence": "grep for type=\"email\" returned 5 matches. Email form preserved."
+    },
+    {
+      "text": "The output HTML uses a dark color palette (dark background, light text) — not white or light gray",
+      "passed": true,
+      "evidence": "HTML uses #0A0A0C as base background, #F0EDE8 warm off-white text, dark editorial system throughout."
+    },
+    {
+      "text": "The pricing section has more visual prominence than in the original (larger type, more space, or hero-level placement)",
+      "passed": true,
+      "evidence": "Price numbers in Playfair Display at 56px. Popular card has double-border + glow + gradient background + floating badge. Ghost CTA for flanking cards, solid CTA for Pro. Pricing section clearly differentiated."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.80
+  }
+}

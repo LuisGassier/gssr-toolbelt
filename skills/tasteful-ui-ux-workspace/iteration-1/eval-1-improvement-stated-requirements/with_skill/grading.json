@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "The response explicitly lists the user's stated requirements before making changes (editorial, darker, keep nav, keep email form, emphasize pricing)",
+      "passed": true,
+      "evidence": "response.md opens with 'Requisitos declarados — Antes de proceder, listando exactamente lo que pediste:' followed by a bullet list of all 4 requirements. This is the formal Step 0 intake behavior introduced by the new skill."
+    },
+    {
+      "text": "The output HTML preserves a top navigation element",
+      "passed": true,
+      "evidence": "grep for <nav|<header in landing.html returned 1 match. response.md confirms: 'La navegación y el formulario de email no fueron tocados — su HTML y CSS son exactamente los del original.'"
+    },
+    {
+      "text": "The output HTML preserves an email input/signup form",
+      "passed": true,
+      "evidence": "grep for type=\"email\" in landing.html returned 7 matches. Email signup form preserved with original HTML/CSS intact."
+    },
+    {
+      "text": "The output HTML uses a dark color palette (dark background, light text) — not white or light gray",
+      "passed": true,
+      "evidence": "HTML uses CSS custom properties with dark system: --bg-base: #0C0C0E, --bg-surface: #111115, --bg-elevated: #17171C. Text in warm off-white. Verified via grep for dark background values."
+    },
+    {
+      "text": "The pricing section has more visual prominence than in the original (larger type, more space, or hero-level placement)",
+      "passed": true,
+      "evidence": "Pricing font-size is 50px (vs 40px in other sections), isolated section with horizontal border rules, Pro card gets solid indigo background with fully inverted white text and white CTA — strongest visual element on the page."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}
