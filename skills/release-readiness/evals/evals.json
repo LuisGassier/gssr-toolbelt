@@ -1,0 +1,22 @@
+{
+  "skill_name": "release-readiness",
+  "evals": [
+    {
+      "id": 0,
+      "name": "friday-signup-and-migration-go-no-go",
+      "prompt": "We are deploying the new signup flow and the orders status migration on Friday. Give a go/no-go with blockers. Be explicit about risk and rollback.",
+      "expected_output": "Release classification, blast radius, migration compatibility/rehearsal, flags, rollback, monitoring, comms, post-deploy checks, and an explicit go/no-go.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Classifies the release types and blast radius",
+        "Blocks or conditions the release on migration compatibility and rehearsal",
+        "Requires a rollback or flag-off plan and monitoring",
+        "Names post-deploy verification and abort criteria",
+        "Covers communication/support and a named owner",
+        "Gives an explicit GO/NO-GO with blockers, not vague optimism"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "skill_name": "acceptance-criteria",
+  "evals": [
+    {
+      "id": 0,
+      "name": "team-invitations-contract",
+      "prompt": "Turn this into acceptance criteria before implementation: add team invitations with roles (admin/member) and a 7-day expiry, including revoke and resend. Use the repo for context but focus on invitations.",
+      "expected_output": "Testable rules, edge cases, failure behavior, permissions, non-goals, open questions, and a definition of done.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Writes observable Given/When/Then or rule-based criteria",
+        "Covers expiry boundary, used/revoked token, duplicate member, and non-owner authorization",
+        "States explicit non-goals",
+        "Covers failure behavior such as email failure, double accept, and invalid token",
+        "Includes a definition of done and open questions",
+        "Avoids prescribing implementation details such as Redis or specific tables"
+      ]
+    }
+  ]
+}

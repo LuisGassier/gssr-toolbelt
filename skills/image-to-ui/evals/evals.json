@@ -1,0 +1,23 @@
+{
+  "skill_name": "image-to-ui",
+  "evals": [
+    {
+      "id": 0,
+      "name": "pixel-level-dashboard-reproduction",
+      "prompt": "Reproduce the UI in reference.png exactly at 1440x900 CSS px and DPR 1. Match the layout, typography, palette, spacing, borders, icons, and every visible detail. Build index.html and styles.css, render it, diff it against the reference with the image-to-ui probe, and iterate until the remaining differences are explained.",
+      "expected_output": "A faithful static reproduction with measured tokens, a same-viewport render, a numeric diff, and an honest list of inferred behavior and remaining deviations.",
+      "files": [
+        "evals/fixtures/ui-reference"
+      ],
+      "assertions": [
+        "Identifies the 1440x900 CSS viewport and DPR 1",
+        "Reproduces the 232px sidebar plus main shell with measured geometry",
+        "Matches the display serif and UI sans typography with measured sizes and weights",
+        "Samples the paper, forest, accent, and border colors instead of guessing",
+        "Reproduces the sidebar nav, stat cards, observations table with status pills, and right rail",
+        "Renders at 1440x900 and provides a diff image with a numeric mismatch",
+        "States inferred responsive/states behavior and any remaining deviations"
+      ]
+    }
+  ]
+}

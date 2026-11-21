@@ -1,0 +1,21 @@
+{
+  "skill_name": "refactor-safely",
+  "evals": [
+    {
+      "id": 0,
+      "name": "utils-behavior-preserving-cleanup",
+      "prompt": "Clean up src/lib/utils.js without changing behavior. It is used across the app. Keep the refactor reviewable.",
+      "expected_output": "States the behavior invariant, characterizes current behavior, moves in small steps, preserves or explicitly migrates exports, and keeps refactor separate from behavior change.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "States the behavior invariant explicitly",
+        "Adds or identifies characterization tests before structural change",
+        "Preserves or explicitly migrates the public exports",
+        "Does not change behavior such as date/currency output or fallbacks",
+        "Keeps changes small and reversible"
+      ]
+    }
+  ]
+}

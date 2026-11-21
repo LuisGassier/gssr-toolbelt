@@ -1,0 +1,212 @@
+[
+  {
+    "skill": "feature-interrogation",
+    "should_trigger": true,
+    "prompt": "Our CEO wants a Slack integration shipped this sprint because two prospects asked. Should we build it?"
+  },
+  {
+    "skill": "simplest-solution",
+    "should_trigger": true,
+    "prompt": "This component has 14 boolean props and an event bus for two callers. Make it simpler without losing behavior."
+  },
+  {
+    "skill": "acceptance-criteria",
+    "should_trigger": true,
+    "prompt": "Write acceptance criteria for password reset before we start implementing it."
+  },
+  {
+    "skill": "code-review",
+    "should_trigger": true,
+    "prompt": "Can you review PR #482? It changes tenant scoping in the billing query and adds a migration."
+  },
+  {
+    "skill": "debug-root-cause",
+    "should_trigger": true,
+    "prompt": "We get intermittent 502s only under load after the last deploy. Help me find the actual cause."
+  },
+  {
+    "skill": "refactor-safely",
+    "should_trigger": true,
+    "prompt": "We need to split this 2,000-line service into modules without changing behavior."
+  },
+  {
+    "skill": "test-strategy",
+    "should_trigger": true,
+    "prompt": "How should we test the checkout flow? We have almost no tests and limited time."
+  },
+  {
+    "skill": "security-review",
+    "should_trigger": true,
+    "prompt": "Audit our file upload and admin endpoints before we expose this app to the internet."
+  },
+  {
+    "skill": "performance-engineering",
+    "should_trigger": true,
+    "prompt": "The dashboard takes 6 seconds to load and the orders API p95 is 900ms. Make it faster."
+  },
+  {
+    "skill": "migration-safety",
+    "should_trigger": true,
+    "prompt": "We need to rename a column on a 50 million row Postgres table with zero downtime."
+  },
+  {
+    "skill": "api-contract",
+    "should_trigger": true,
+    "prompt": "We are adding a partner API for orders. Design the endpoints, errors, pagination, and versioning."
+  },
+  {
+    "skill": "anti-ai-slop",
+    "should_trigger": true,
+    "prompt": "This landing page looks like every AI-generated SaaS: purple gradient, three feature cards, and 'seamless'. Remove the slop."
+  },
+  {
+    "skill": "clear-writing",
+    "should_trigger": true,
+    "prompt": "Rewrite this error message so a non-technical user knows what happened and what to do next."
+  },
+  {
+    "skill": "pr-craft",
+    "should_trigger": true,
+    "prompt": "My branch mixes a refactor, a feature, and formatting. Help me split it into reviewable commits and write the PR."
+  },
+  {
+    "skill": "accessibility-audit",
+    "should_trigger": true,
+    "prompt": "Our signup form fails WCAG. Audit it and fix the keyboard, label, and focus issues."
+  },
+  {
+    "skill": "design-system-discipline",
+    "should_trigger": true,
+    "prompt": "We have eleven button variants and raw hex values everywhere. Set up a minimal design system and migrate it."
+  },
+  {
+    "skill": "motion-quality",
+    "should_trigger": true,
+    "prompt": "The modal animation feels janky and slow, and every card has a hover scale. Fix the motion."
+  },
+  {
+    "skill": "observability-first",
+    "should_trigger": true,
+    "prompt": "We are launching a new payments service. What logs, metrics, traces, and alerts do we need before on-call?"
+  },
+  {
+    "skill": "release-readiness",
+    "should_trigger": true,
+    "prompt": "We deploy the billing migration and new signup flow Friday. Give me a go/no-go with blockers."
+  },
+  {
+    "skill": "dependency-hygiene",
+    "should_trigger": true,
+    "prompt": "Should we add date-fns to replace moment? Audit our package.json and dependency tree."
+  },
+  {
+    "skill": "image-to-ui",
+    "should_trigger": true,
+    "prompt": "Tengo este screenshot de un dashboard. Replica la UI exactamente en HTML/CSS, hasta el último detalle visible."
+  },
+  {
+    "skill": "feature-interrogation",
+    "should_trigger": false,
+    "prompt": "The login button is broken on Safari. Fix the CSS."
+  },
+  {
+    "skill": "simplest-solution",
+    "should_trigger": false,
+    "prompt": "Optimize this SQL query; it scans 2 million rows on every request."
+  },
+  {
+    "skill": "acceptance-criteria",
+    "should_trigger": false,
+    "prompt": "Generate twenty unit tests for this utility function."
+  },
+  {
+    "skill": "code-review",
+    "should_trigger": false,
+    "prompt": "Write an email validation function with tests."
+  },
+  {
+    "skill": "debug-root-cause",
+    "should_trigger": false,
+    "prompt": "Add structured logging and a dashboard to the checkout service."
+  },
+  {
+    "skill": "refactor-safely",
+    "should_trigger": false,
+    "prompt": "Rename this local variable from x to invoiceTotal."
+  },
+  {
+    "skill": "test-strategy",
+    "should_trigger": false,
+    "prompt": "Our CI job keeps timing out after 30 minutes. Increase the runner timeout."
+  },
+  {
+    "skill": "security-review",
+    "should_trigger": false,
+    "prompt": "Add a cookie consent banner for GDPR compliance."
+  },
+  {
+    "skill": "performance-engineering",
+    "should_trigger": false,
+    "prompt": "Our cloud bill doubled last month. Find ways to reduce infrastructure cost."
+  },
+  {
+    "skill": "migration-safety",
+    "should_trigger": false,
+    "prompt": "Write a SQL query that lists all active users by signup month."
+  },
+  {
+    "skill": "api-contract",
+    "should_trigger": false,
+    "prompt": "Call the Stripe API to create a test charge."
+  },
+  {
+    "skill": "anti-ai-slop",
+    "should_trigger": false,
+    "prompt": "Translate this README from English to Spanish."
+  },
+  {
+    "skill": "clear-writing",
+    "should_trigger": false,
+    "prompt": "Summarize this 40-page PDF into five bullets."
+  },
+  {
+    "skill": "pr-craft",
+    "should_trigger": false,
+    "prompt": "Resolve the merge conflict in package.json."
+  },
+  {
+    "skill": "accessibility-audit",
+    "should_trigger": false,
+    "prompt": "Make the logo bigger and move it to the left."
+  },
+  {
+    "skill": "design-system-discipline",
+    "should_trigger": false,
+    "prompt": "Pick a brand color palette and logo direction for a new startup."
+  },
+  {
+    "skill": "motion-quality",
+    "should_trigger": false,
+    "prompt": "Build a CSS-only loading spinner."
+  },
+  {
+    "skill": "observability-first",
+    "should_trigger": false,
+    "prompt": "Set up a GitHub Actions pipeline to run tests on every pull request."
+  },
+  {
+    "skill": "release-readiness",
+    "should_trigger": false,
+    "prompt": "Write a changelog for last month's releases."
+  },
+  {
+    "skill": "dependency-hygiene",
+    "should_trigger": false,
+    "prompt": "Upgrade our runtime from Node 18 to Node 22."
+  },
+  {
+    "skill": "image-to-ui",
+    "should_trigger": false,
+    "prompt": "Diseña un dashboard para una app de investigación de campo desde cero."
+  }
+]

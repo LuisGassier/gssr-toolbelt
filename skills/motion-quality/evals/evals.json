@@ -1,0 +1,22 @@
+{
+  "skill_name": "motion-quality",
+  "evals": [
+    {
+      "id": 0,
+      "name": "purposeful-dashboard-motion",
+      "prompt": "Add motion to the dashboard and signup flow so it feels alive, without making it slow or distracting.",
+      "expected_output": "Purpose gate, small token set of durations/easings, transform/opacity only, reduced-motion support, and removal of gratuitous pulse/hover-scale effects.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Questions whether each animation has a purpose before adding it",
+        "Removes or replaces gratuitous animate-pulse and hover-scale effects",
+        "Specifies durations, easings, and compositor-friendly properties",
+        "Honors prefers-reduced-motion",
+        "Avoids animating layout properties or blocking input",
+        "Keeps motion consistent with a small token set"
+      ]
+    }
+  ]
+}

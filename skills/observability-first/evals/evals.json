@@ -1,0 +1,22 @@
+{
+  "skill_name": "observability-first",
+  "evals": [
+    {
+      "id": 0,
+      "name": "on-call-debuggability",
+      "prompt": "Make this service debuggable in production. Add the logging, metrics, tracing, and alerts you would need on call.",
+      "expected_output": "Structured logs with request/trace IDs, no PII, RED/USE metrics, business events, trace propagation, SLO/alerts, and a runbook plus verification.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Replaces console.log with structured logs including request/trace IDs",
+        "Removes or redacts PII and passwords from logs",
+        "Adds RED/USE metrics and key business events",
+        "Adds trace propagation across HTTP/DB and async work",
+        "Defines symptom-based alerts/SLO with a runbook",
+        "Includes a verification plan such as a synthetic failure"
+      ]
+    }
+  ]
+}

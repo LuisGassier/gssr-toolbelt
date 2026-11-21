@@ -1,0 +1,22 @@
+{
+  "skill_name": "security-review",
+  "evals": [
+    {
+      "id": 0,
+      "name": "pre-internet-security-audit",
+      "prompt": "Audit this app before exposing it to the internet. Report exploitable issues and release blockers with concrete fixes.",
+      "expected_output": "Finds SQL injection, missing authorization, hardcoded/committed secrets, PII logging, weak JWT/dependency risk, and ranks severity with fixes.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Finds SQL injection in /api/users",
+        "Finds missing authorization on the admin delete endpoint",
+        "Finds the hardcoded JWT secret and/or committed secrets in .env.example",
+        "Finds PII or password logging",
+        "Flags weak/outdated JWT handling or dependency risk",
+        "Ranks severity and gives concrete fixes and verification"
+      ]
+    }
+  ]
+}

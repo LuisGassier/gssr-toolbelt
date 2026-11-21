@@ -1,0 +1,21 @@
+{
+  "skill_name": "debug-root-cause",
+  "evals": [
+    {
+      "id": 0,
+      "name": "cart-concurrency-bug",
+      "prompt": "The cart total is sometimes wrong when two users add items at the same time. Find and fix the root cause. Add a regression test.",
+      "expected_output": "Identifies shared module-level mutable state, explains the concurrent-request scenario, scopes state per request/session, and adds a regression test.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Identifies the shared mutable module-level total as the root cause",
+        "Explains the concurrent-request scenario that produces the wrong total",
+        "Fixes by scoping state per request or session, not by hiding the symptom",
+        "Adds a regression test that exercises concurrency",
+        "Does not merely add a try/catch, sleep, or restart"
+      ]
+    }
+  ]
+}

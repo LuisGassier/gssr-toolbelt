@@ -1,0 +1,22 @@
+{
+  "skill_name": "api-contract",
+  "evals": [
+    {
+      "id": 0,
+      "name": "partner-orders-api-contract",
+      "prompt": "Review openapi.yaml and the orders endpoints for an external partner API. Fix the contract and list breaking changes.",
+      "expected_output": "Consistent error shape/status codes, cursor pagination, idempotency for POST, documented authz, versioning/deprecation, and a list of breaking changes.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Flags errors returned with HTTP 200 and inconsistent error shapes",
+        "Requires one consistent error schema and correct status codes",
+        "Adds idempotency for order creation and retries",
+        "Replaces or bounds offset pagination with cursor pagination",
+        "Documents authentication/authorization and versioning",
+        "Identifies breaking changes for existing clients"
+      ]
+    }
+  ]
+}

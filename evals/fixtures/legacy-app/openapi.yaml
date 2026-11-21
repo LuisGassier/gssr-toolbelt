@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Acme Dashboard API
+  version: 1.0.0
+paths:
+  /orders:
+    get:
+      summary: List orders
+      parameters:
+        - name: page
+          in: query
+          schema: { type: integer }
+        - name: limit
+          in: query
+          schema: { type: integer }
+        - name: sort
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK or an error, depending on the day
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      success: { type: boolean }
+                      data:
+                        type: array
+                        items: { type: object }
+                  - type: object
+                    properties:
+                      success: { type: boolean }
+                      error: { type: string }
+        "500":
+          description: Also an error, with a different shape
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: { type: string }
+    post:
+      summary: Create an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_email: { type: string }
+                amount: { type: number }
+      responses:
+        "200":
+          description: Created
+  /orders/{id}:
+    get:
+      summary: Get an order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Order or error
+    delete:
+      summary: Delete an order
+      responses:
+        "200":
+          description: Deleted
+  /admin/users/{id}:
+    delete:
+      summary: Delete a user
+      responses:
+        "200":
+          description: Deleted

@@ -1,0 +1,22 @@
+{
+  "skill_name": "performance-engineering",
+  "evals": [
+    {
+      "id": 0,
+      "name": "orders-api-performance",
+      "prompt": "The orders API and dashboard feel slow. Make them faster, but show your measurements and reasoning. Do not guess.",
+      "expected_output": "Defines a budget, requires a baseline, identifies the N+1 loop and SELECT *, recommends batching/joins, indexes, pagination, and proves the win before/after.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Requires a baseline measurement before optimizing",
+        "Identifies the N+1 query loop in /api/orders",
+        "Recommends batching/join and selecting only needed columns",
+        "Considers pagination, indexes, and payload size",
+        "Does not add caching as the first fix without measurement",
+        "Proposes before/after verification with realistic data"
+      ]
+    }
+  ]
+}

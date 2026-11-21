@@ -1,0 +1,22 @@
+{
+  "skill_name": "accessibility-audit",
+  "evals": [
+    {
+      "id": 0,
+      "name": "signup-form-wcag-22-aa",
+      "prompt": "Audit src/components/SignupForm.jsx for accessibility and fix the blockers. We target WCAG 2.2 AA.",
+      "expected_output": "Real form/button semantics, persistent labels, keyboard/focus and error handling, contrast/target-size/motion fixes, minimal ARIA, proportional changes.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Replaces the clickable div with a real button or form submit",
+        "Adds persistent visible labels associated with each input",
+        "Addresses keyboard/focus and error announcement or association",
+        "Flags contrast, target size, or motion issues such as animate-pulse and the tiny submit",
+        "Avoids ARIA that substitutes for native semantics",
+        "Keeps the fix proportional and does not redesign the whole app"
+      ]
+    }
+  ]
+}

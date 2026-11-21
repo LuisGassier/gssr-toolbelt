@@ -1,0 +1,22 @@
+{
+  "skill_name": "code-review",
+  "evals": [
+    {
+      "id": 0,
+      "name": "pre-ship-server-review",
+      "prompt": "Review server.js before we ship it. Focus on defects that would block release. Give file/line evidence and concrete fixes.",
+      "expected_output": "Finds SQL injection, missing authorization on admin delete, PII/password logging, N+1 queries, blocking I/O, swallowed errors, and weak secret/JWT handling, ranked by severity.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Flags SQL injection in /api/users",
+        "Flags missing authorization on the admin delete endpoint",
+        "Flags PII or password logging in /api/login",
+        "Flags the N+1 query pattern in /api/orders",
+        "Flags blocking readFileSync and/or swallowed errors",
+        "Ranks findings by severity and gives file/line plus a fix"
+      ]
+    }
+  ]
+}

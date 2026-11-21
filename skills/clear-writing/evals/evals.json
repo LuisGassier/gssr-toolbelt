@@ -1,0 +1,21 @@
+{
+  "skill_name": "clear-writing",
+  "evals": [
+    {
+      "id": 0,
+      "name": "readme-and-error-rewrite",
+      "prompt": "Rewrite the README and the API error messages so a new developer can actually run the app and fix failures.",
+      "expected_output": "Leads with what the app is and who it is for, adds runnable prerequisites and configuration, removes fake claims, and rewrites errors with cause and next action.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Leads with what the app is and who it is for",
+        "Adds runnable prerequisites, setup steps, and configuration",
+        "Removes or flags fake claims and testimonials",
+        "Rewrites errors to say what happened, why, and what to do",
+        "Keeps the text concise and specific"
+      ]
+    }
+  ]
+}

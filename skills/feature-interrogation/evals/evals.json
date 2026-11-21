@@ -1,0 +1,22 @@
+{
+  "skill_name": "feature-interrogation",
+  "evals": [
+    {
+      "id": 0,
+      "name": "vague-ai-recommendations",
+      "prompt": "We need to add AI-powered recommendations to the dashboard for the Q4 launch. The request is in docs/FEATURE-REQUEST.md. Decide whether we should build it and what the smallest next step is. Do not write production code.",
+      "expected_output": "A verdict that challenges the request, identifies missing evidence, considers alternatives including doing nothing, prices maintenance/security, and proposes a cheap experiment with kill criteria.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Does not start implementing the recommendation engine",
+        "Separates the stated solution from the underlying user problem",
+        "Explicitly assesses evidence and flags what is missing",
+        "Considers at least three alternatives including doing nothing",
+        "Gives one explicit verdict (BUILD, BUILD SMALL, LEARN FIRST, NOT NOW, or NO)",
+        "Defines a small experiment or kill criteria with a decision rule"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "skill_name": "anti-ai-slop",
+  "evals": [
+    {
+      "id": 0,
+      "name": "remove-slop-from-readable-surfaces",
+      "prompt": "Quita el AI slop del README, del Dashboard y del formulario de registro. Quiero que se sienta específico y humano, no como una plantilla generada.",
+      "expected_output": "Responds in Spanish, identifies fake proof and visual clichés, removes or flags placeholders, replaces vague copy with specifics, and does not invent proof.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Responds in Spanish",
+        "Identifies fake proof or unsupported metrics such as trusted by thousands, 99.9%, or 10x",
+        "Identifies generic visual clichés such as purple/indigo gradients, glassmorphism, and three equal cards",
+        "Removes or flags placeholder testimonials such as John Doe and Acme",
+        "Replaces vague copy with specific text or explicitly asks for missing facts",
+        "Does not invent new metrics or testimonials"
+      ]
+    }
+  ]
+}

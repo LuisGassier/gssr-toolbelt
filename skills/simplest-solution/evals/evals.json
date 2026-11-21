@@ -1,0 +1,21 @@
+{
+  "skill_name": "simplest-solution",
+  "evals": [
+    {
+      "id": 0,
+      "name": "minimal-currency-and-cache",
+      "prompt": "Implement a helper that formats currency for the dashboard and a per-request cache for user lookups. Use the existing code in src/lib/utils.js. Keep the change as small as possible.",
+      "expected_output": "Minimal implementation using Intl.NumberFormat, no new dependencies, reuses or removes existing helpers, rejects a speculative cache, and states a complexity budget.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Uses Intl.NumberFormat or platform formatting instead of adding a dependency",
+        "Does not add a caching layer without a measured need, or explicitly rejects it",
+        "Deletes or avoids speculative abstractions and unused helpers",
+        "States a complexity budget covering dependencies, abstractions, and config",
+        "Keeps the diff small and readable"
+      ]
+    }
+  ]
+}

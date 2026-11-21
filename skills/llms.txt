@@ -1,4 +1,46 @@
 # Skills index
 
-- skill-template
-- frontend-polish
+Curated, portable Agent Skills for coding assistants. Each folder contains a `SKILL.md`
+with YAML frontmatter and optional `references/`, `scripts/`, and `evals/`.
+
+## Product and decisions
+
+- feature-interrogation — challenge a feature before building it.
+- acceptance-criteria — turn a vague request into a testable contract.
+- simplest-solution — the least code and dependencies that solve the problem.
+
+## Engineering quality
+
+- code-review — find real defects in a diff, ranked by severity.
+- debug-root-cause — reproduce, isolate, and fix the cause.
+- refactor-safely — behavior-preserving structural change.
+- test-strategy — risk-based decisions about what to test and where.
+- security-review — threat model and concrete security audit.
+- performance-engineering — measure, profile, fix, and guard the bottleneck.
+
+## Data and APIs
+
+- migration-safety — expand/contract migrations without downtime or data loss.
+- api-contract — design and evolve APIs clients can depend on.
+
+## Craft and design
+
+- anti-ai-slop — remove generic, templated, AI-looking output.
+- clear-writing — docs, errors, PRs, and microcopy that are specific and useful.
+- pr-craft — reviewable, reversible commits and pull requests.
+- accessibility-audit — WCAG 2.2 AA audit and fixes.
+- design-system-discipline — tokens, primitives, variants, and migration.
+- motion-quality — purposeful, accessible, performant animation.
+- image-to-ui — pixel-level reproduction of a UI from a screenshot or mockup.
+- tasteful-ui-ux — design direction and full UI/UX engagements.
+- frontend-polish — visual and UX polish without regressions.
+
+## Delivery and operations
+
+- observability-first — logs, metrics, traces, SLOs, and alerts built in.
+- release-readiness — evidence-based go/no-go and post-deploy verification.
+- dependency-hygiene — add, update, or remove dependencies deliberately.
+
+## Meta
+
+- skill-template — starting point for a new skill.

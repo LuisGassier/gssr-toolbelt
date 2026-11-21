@@ -1,0 +1,22 @@
+{
+  "skill_name": "test-strategy",
+  "evals": [
+    {
+      "id": 0,
+      "name": "risk-based-test-plan",
+      "prompt": "We have almost no meaningful tests. What should we test first, and at what level? Use the existing server and tests as the starting point.",
+      "expected_output": "A risk-based plan prioritizing authorization and data integrity, using integration tests against a real database for SQL/transactions, including cart concurrency and contract tests, and explicitly deprioritizing low-risk areas.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Prioritizes authorization and data-integrity risks first",
+        "Recommends integration tests against a real database for SQL/transaction behavior",
+        "Includes a concurrency test for cart state",
+        "Names specific failure modes rather than generic coverage",
+        "Explicitly says what not to test or deprioritize",
+        "Avoids treating 100% coverage as the goal"
+      ]
+    }
+  ]
+}

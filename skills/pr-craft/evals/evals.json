@@ -1,0 +1,22 @@
+{
+  "skill_name": "pr-craft",
+  "evals": [
+    {
+      "id": 0,
+      "name": "split-messy-working-tree",
+      "prompt": "This working tree has a mix of feature, refactor, formatting, and debug changes. Prepare it for review: propose commits and a PR description. Do not change behavior beyond organizing the change.",
+      "expected_output": "Splits commits by concern, separates refactor/formatting from feature, writes imperative messages, includes why/how verified/risk/rollback, and removes debug code.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Proposes splitting the change into coherent commits by concern",
+        "Separates refactor/formatting from feature behavior",
+        "Writes imperative commit messages",
+        "PR description includes why, how verified, risk, and rollback",
+        "Calls out and removes debug code or formatting noise",
+        "Does not mix unrelated changes in one commit"
+      ]
+    }
+  ]
+}

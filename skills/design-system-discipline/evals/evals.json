@@ -1,0 +1,22 @@
+{
+  "skill_name": "design-system-discipline",
+  "evals": [
+    {
+      "id": 0,
+      "name": "minimal-token-system-migration",
+      "prompt": "The dashboard uses one-off colors, radii, shadows, and buttons. Establish a minimal design system and migrate the touched components without redesigning the product.",
+      "expected_output": "Token layers, semantic names, primitives/variants, full states, migration plan, and no unused variants or large component library.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Defines token layers (primitive/semantic/component) rather than a flat list",
+        "Replaces raw hex or arbitrary values in the touched components",
+        "Consolidates inconsistent buttons into variants with states",
+        "Includes focus, disabled, error, and loading states",
+        "Provides a migration path and avoids adding unused variants",
+        "Does not redesign the product or add a large component library"
+      ]
+    }
+  ]
+}

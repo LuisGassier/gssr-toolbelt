@@ -1,0 +1,256 @@
+{
+  "results": [
+    {
+      "index": 0,
+      "chosen": "feature-interrogation",
+      "confidence": "high",
+      "reason": "The request challenges whether to build a new integration at all, which is exactly the go/no-go scope of feature-interrogation."
+    },
+    {
+      "index": 1,
+      "chosen": "simplest-solution",
+      "confidence": "high",
+      "reason": "Asking to reduce 14 boolean props and an event bus without losing behavior is a direct least-code simplification request."
+    },
+    {
+      "index": 2,
+      "chosen": "acceptance-criteria",
+      "confidence": "high",
+      "reason": "Writing acceptance criteria before implementation is the stated purpose of acceptance-criteria."
+    },
+    {
+      "index": 3,
+      "chosen": "code-review",
+      "confidence": "high",
+      "reason": "Reviewing a pull request for correctness and contract risk is code-review's core job."
+    },
+    {
+      "index": 4,
+      "chosen": "debug-root-cause",
+      "confidence": "high",
+      "reason": "Intermittent production 502s that need actual root-cause diagnosis match debug-root-cause directly."
+    },
+    {
+      "index": 5,
+      "chosen": "refactor-safely",
+      "confidence": "high",
+      "reason": "Splitting a large service without changing behavior is precisely refactor-safely."
+    },
+    {
+      "index": 6,
+      "chosen": "test-strategy",
+      "confidence": "high",
+      "reason": "Deciding how to test a flow given limited time and few tests is a test-strategy decision."
+    },
+    {
+      "index": 7,
+      "chosen": "security-review",
+      "confidence": "high",
+      "reason": "Auditing uploads and admin endpoints before internet exposure is explicitly in security-review's scope."
+    },
+    {
+      "index": 8,
+      "chosen": "performance-engineering",
+      "confidence": "high",
+      "reason": "Slow dashboard and API latency targets call for measured performance work, which performance-engineering covers."
+    },
+    {
+      "index": 9,
+      "chosen": "migration-safety",
+      "confidence": "high",
+      "reason": "A zero-downtime column rename on a huge table is exactly the schema migration case migration-safety handles."
+    },
+    {
+      "index": 10,
+      "chosen": "api-contract",
+      "confidence": "high",
+      "reason": "Designing endpoints, errors, pagination, and versioning for a partner API is api-contract's remit."
+    },
+    {
+      "index": 11,
+      "chosen": "anti-ai-slop",
+      "confidence": "high",
+      "reason": "Removing purple-gradient, three-card, 'seamless' landing page sameness is literally anti-ai-slop."
+    },
+    {
+      "index": 12,
+      "chosen": "clear-writing",
+      "confidence": "high",
+      "reason": "Rewriting an error message to tell a user what to do next is clear-writing's stated use case."
+    },
+    {
+      "index": 13,
+      "chosen": "pr-craft",
+      "confidence": "high",
+      "reason": "Splitting a mixed branch into reviewable commits and writing the PR description is pr-craft."
+    },
+    {
+      "index": 14,
+      "chosen": "accessibility-audit",
+      "confidence": "high",
+      "reason": "A WCAG failure on keyboard, labels, and focus is the direct target of accessibility-audit."
+    },
+    {
+      "index": 15,
+      "chosen": "design-system-discipline",
+      "confidence": "high",
+      "reason": "Consolidating eleven button variants and raw hex values into a minimal design system is design-system-discipline."
+    },
+    {
+      "index": 16,
+      "chosen": "motion-quality",
+      "confidence": "high",
+      "reason": "Janky modal animation and gratuitous hover scaling are motion quality decisions, matching motion-quality."
+    },
+    {
+      "index": 17,
+      "chosen": "observability-first",
+      "confidence": "high",
+      "reason": "Specifying logs, metrics, traces, and alerts before on-call is exactly observability-first."
+    },
+    {
+      "index": 18,
+      "chosen": "release-readiness",
+      "confidence": "high",
+      "reason": "A Friday deploy go/no-go with named blockers is the release-readiness gate."
+    },
+    {
+      "index": 19,
+      "chosen": "dependency-hygiene",
+      "confidence": "high",
+      "reason": "Deciding whether to add date-fns and auditing package.json is dependency-hygiene's core question."
+    },
+    {
+      "index": 20,
+      "chosen": "image-to-ui",
+      "confidence": "high",
+      "reason": "Replicating a screenshot exactly in HTML/CSS is the pixel-fidelity recreation image-to-ui describes."
+    },
+    {
+      "index": 21,
+      "chosen": "none",
+      "confidence": "medium",
+      "reason": "A trivially stated CSS fix for a Safari-only button break does not clearly need a diagnostic or design skill."
+    },
+    {
+      "index": 22,
+      "chosen": "performance-engineering",
+      "confidence": "high",
+      "reason": "Optimizing a query that scans two million rows falls under performance-engineering's explicit 'optimizing a query' scope."
+    },
+    {
+      "index": 23,
+      "chosen": "none",
+      "confidence": "medium",
+      "reason": "Generating twenty unit tests is a mechanical task, and test-strategy is about deciding what and where to test rather than bulk test authoring."
+    },
+    {
+      "index": 24,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Writing a small email validation function with tests fits no listed skill."
+    },
+    {
+      "index": 25,
+      "chosen": "observability-first",
+      "confidence": "high",
+      "reason": "Adding structured logging and a dashboard is explicitly named in observability-first."
+    },
+    {
+      "index": 26,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Renaming one local variable is too small for refactor-safely and needs no skill."
+    },
+    {
+      "index": 27,
+      "chosen": "test-strategy",
+      "confidence": "low",
+      "reason": "The flaky test is mentioned in test-strategy's scope, but the request is a narrow timeout workaround rather than suite strategy."
+    },
+    {
+      "index": 28,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "A GDPR cookie consent banner is compliance work that no listed skill covers."
+    },
+    {
+      "index": 29,
+      "chosen": "none",
+      "confidence": "medium",
+      "reason": "Infrastructure cost reduction is neither latency nor throughput performance-engineering, and no cost skill is listed."
+    },
+    {
+      "index": 30,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Writing a reporting SQL query is not a migration or schema change."
+    },
+    {
+      "index": 31,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Calling the Stripe API is integration usage, whereas api-contract is about designing APIs, not consuming them."
+    },
+    {
+      "index": 32,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Translation is not covered by clear-writing, which addresses authoring and rewriting rather than translating."
+    },
+    {
+      "index": 33,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Summarizing a PDF into bullets is a generic reading task with no matching skill."
+    },
+    {
+      "index": 34,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Resolving a merge conflict is not PR shaping or commit splitting, so pr-craft does not apply."
+    },
+    {
+      "index": 35,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Making a logo bigger and moving it is a trivial visual tweak with no accessibility or design-system scope."
+    },
+    {
+      "index": 36,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Brand palette and logo direction are identity work, not design-system token or component discipline."
+    },
+    {
+      "index": 37,
+      "chosen": "none",
+      "confidence": "medium",
+      "reason": "A CSS-only spinner touches loading motion, but the ask is straightforward implementation rather than motion quality decisions."
+    },
+    {
+      "index": 38,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "CI pipeline setup is build automation, not logging, metrics, tracing, or alerting."
+    },
+    {
+      "index": 39,
+      "chosen": "clear-writing",
+      "confidence": "medium",
+      "reason": "A changelog is close to the release notes clear-writing explicitly names, though it could be routine bookkeeping."
+    },
+    {
+      "index": 40,
+      "chosen": "none",
+      "confidence": "medium",
+      "reason": "A Node runtime upgrade is a platform migration, not dependency keep-or-remove hygiene."
+    },
+    {
+      "index": 41,
+      "chosen": "none",
+      "confidence": "high",
+      "reason": "Designing a dashboard from scratch is not image-based recreation, so image-to-ui does not fit."
+    }
+  ]
+}

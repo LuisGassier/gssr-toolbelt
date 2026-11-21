@@ -1,0 +1,22 @@
+{
+  "skill_name": "migration-safety",
+  "evals": [
+    {
+      "id": 0,
+      "name": "live-orders-status-migration",
+      "prompt": "We need to add a NOT NULL status column to orders and an index, on a live production table. Review and rewrite db/migrations/001_add_status.sql safely.",
+      "expected_output": "Expand/contract plan, lock timeouts, concurrent index, validated constraint, batched backfill, verification, and rollback/cleanup.",
+      "files": [
+        "evals/fixtures/legacy-app"
+      ],
+      "assertions": [
+        "Rejects running the migration as one blocking step",
+        "Uses lock_timeout/statement_timeout or equivalent guardrails",
+        "Uses CREATE INDEX CONCURRENTLY for the live table",
+        "Adds the column/constraint in a backward-compatible expand phase",
+        "Batches the backfill instead of one large UPDATE",
+        "Includes verification and rollback/cleanup"
+      ]
+    }
+  ]
+}
