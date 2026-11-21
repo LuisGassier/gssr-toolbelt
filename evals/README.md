@@ -1,8 +1,13 @@
 # Evaluaciones
 
-Cada skill incluye `evals/evals.json` con uno o más casos. El fixture compartido es
-`fixtures/legacy-app`: una app Express/React con defectos deliberados de seguridad,
-rendimiento, accesibilidad, migraciones, API, copy y testing.
+Cada skill incluye `evals/evals.json` con uno o más casos. Hay dos fixtures:
+
+- `fixtures/legacy-app`: una app Express/React con defectos deliberados de seguridad,
+  rendimiento, accesibilidad, migraciones, API, copy y testing.
+- `fixtures/ui-reference`: un screenshot de 1440×900 para el skill `image-to-ui`. La fuente
+  está en `fixtures/ui-reference-src/` y no se copia a la ejecución.
+
+El resultado consolidado está en `RESULTS.md`.
 
 ## Ciclo de prueba
 
@@ -33,6 +38,19 @@ rendimiento, accesibilidad, migraciones, API, copy y testing.
 
 5. Registrar el resultado en `evals/RESULTS.md` con: skill, veredicto, aserciones
    fallidas, causa y mejora aplicada.
+
+## Medir y comparar imágenes
+
+El skill `image-to-ui` incluye `scripts/image_probe.py` (requiere Pillow):
+
+```bash
+python3 skills/image-to-ui/scripts/image_probe.py info reference.png --dpr 1
+python3 skills/image-to-ui/scripts/image_probe.py palette reference.png --colors 16
+python3 skills/image-to-ui/scripts/image_probe.py sample reference.png --points "24,24;232,64" --radius 2
+python3 skills/image-to-ui/scripts/image_probe.py grid reference.png --step 100 --labels --out grid.png
+python3 skills/image-to-ui/scripts/image_probe.py diff reference.png render.png \
+  --tolerance 8 --out diff.png --overlay overlay.png --fail-over 0.5
+```
 
 ## Reglas
 

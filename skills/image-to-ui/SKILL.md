@@ -42,17 +42,23 @@ Before measuring, confirm:
 
 ```
 Source: [file/URL, resolution, color profile]
-Viewport: [CSS width × height, inferred or given]
-DPR: [1× / 2× / 3×, inferred or given]
-Target stack: [plain HTML/CSS, React, Vue, Tailwind, ...]
+Platform: [web / iOS / Android / Flutter / React Native / MAUI / desktop]
+Viewport: [CSS px / pt / dp / logical px; width × height]
+Scale: [DPR / displayScale / density, inferred or given]
+Device: [browser viewport / simulator / emulator + OS version]
+Target stack: [plain HTML/CSS, React, Vue, Tailwind, SwiftUI, Flutter, ...]
+Text scale: [default / 1.0 / large / Dynamic Type size]
+Theme: [light / dark / high contrast]
+Safe areas and system chrome: [included / excluded]
 Deliverable: [page, component, screenshot only]
 States in scope: [default only / hover, focus, open, empty, error, ...]
 Allowed deviations: [fonts, assets, responsive behavior, accessibility fixes]
 Assets/licensing: [can crop from the image? are fonts/images licensed?]
 ```
 
-If the viewport or DPR is unknown, infer it from the image and state the inference. Do not
-silently assume 1440×900 at 1×.
+If the viewport, scale, or text scale is unknown, infer it from the image and state the
+inference. Do not silently assume 1440×900 at 1×. CSS px, iOS points, Android dp, and Flutter
+logical px are different units; do not compare their numbers directly.
 
 ### 1. Inspect the image forensically
 
@@ -124,6 +130,20 @@ If a value is an estimate, mark it `~`. Do not mix measured and guessed values s
 Use CSS variables for the measured tokens. Keep one-off values explicit rather than
 inventing a scale the source does not use.
 
+**Framework and platform mapping.** The fidelity workflow is framework-agnostic; only the token
+home, component syntax, units, and capture harness change.
+
+- Web targets (React/Next, Vue/Nuxt, Svelte/SvelteKit, Angular, Tailwind, CSS-in-JS, design
+  systems): read [references/frameworks.md](references/frameworks.md).
+- Native and cross-platform targets (Flutter, SwiftUI/UIKit, React Native, Jetpack Compose,
+  Android Views, .NET MAUI, desktop shells): read
+  [references/native-and-cross-platform.md](references/native-and-cross-platform.md). It covers
+  pt/dp/logical-px conversion, text scale/Dynamic Type, safe areas, golden/snapshot tests,
+  `ImageRenderer`, Paparazzi/Roborazzi, Detox/Maestro, and platform gotchas.
+
+Do not add a framework or platform the product does not use just to reproduce an image, and do
+not claim cross-platform fidelity from documentation alone. Claim what was rendered and diffed.
+
 ### 4. Render and compare
 
 Render at the exact CSS viewport and DPR. For a static page:
@@ -134,6 +154,15 @@ Render at the exact CSS viewport and DPR. For a static page:
   --force-device-scale-factor=1 --window-size=1440,900 \
   --screenshot=render.png file:///absolute/path/index.html
 ```
+
+For a web framework app, capture the same viewport/DPR with Playwright or Puppeteer, wait for
+`document.fonts.ready` and hydration, and disable animations. See
+[references/frameworks.md](references/frameworks.md) for ready-to-use snippets.
+
+For Flutter, iOS, Android, React Native, or desktop, use the platform harness in
+[references/native-and-cross-platform.md](references/native-and-cross-platform.md): Flutter
+golden tests, SwiftUI `ImageRenderer`/`simctl`, Paparazzi/Roborazzi, Detox/Maestro, and the
+corresponding unit/scale conversion. Freeze text scale and exclude system chrome consistently.
 
 Then diff:
 
@@ -172,6 +201,11 @@ Check every item against the source at 200–400% zoom:
 - States: active tab, selected row, focus ring, disabled opacity, badge tone.
 - Scrollbars, selection color, caret, placeholder, empty state (if visible).
 - Background: flat vs subtle texture, noise, grain, gradient.
+- Platform chrome: status bar, home indicator, notch, navigation bar, window title bar, safe
+  areas — included or excluded exactly as the reference does it.
+- Text scale: Dynamic Type/fontScale/textScaler at the reference setting; check large text
+  separately so the layout does not silently collapse.
+- Native defaults: ripples, elevation, focus rings, control padding, and system fonts.
 
 ### 6. Responsive and hidden states
 
@@ -238,8 +272,17 @@ Do not call it pixel-perfect at the structural level. Say which levels are verif
 
 - **DPR confusion.** A 2× screenshot has twice the pixels; divide by DPR for CSS px. Use the
   same DPR when rendering or the diff will be meaningless.
-- **Browser chrome is not UI.** Exclude tabs, URL bars, scrollbars, and OS window edges from
-  the reproduction unless the task includes them.
+- **Units are not interchangeable.** CSS px, iOS points, Android dp, and Flutter logical px are
+  different units. Convert through the platform scale; do not copy a 44 from the web into a
+  44pt iOS control and assume it matches.
+- **Text scale is a separate axis.** Dynamic Type, `fontScale`, `textScaler`, and
+  `allowFontScaling` change wrapping without changing the layout unit. Freeze the same setting
+  and verify large text; do not disable accessibility to protect a pixel match.
+- **Native controls are not web controls.** A UIButton, Material button, or Cupertino control
+  brings its own padding, ripple, elevation, and focus behavior. Choose custom drawing for
+  fidelity or native behavior for convention, and document the choice.
+- **Browser/OS chrome is not UI.** Exclude tabs, URL bars, scrollbars, status bars, home
+  indicators, and OS window edges unless the task includes them.
 - **Compression artifacts.** JPEG/WebP noise changes sampled colors. Sample flat areas away
   from edges and text; never sample an antialiased pixel as a fill.
 - **Color profiles.** A P3 screenshot displayed in sRGB shifts colors. Convert deliberately
@@ -254,6 +297,9 @@ Do not call it pixel-perfect at the structural level. Say which levels are verif
   Hide scrollbars only if the source did.
 - **Text rendering differs across OS/browser.** Antialiasing and font smoothing change the
   diff even with identical CSS. Compare geometry first, then color, then glyphs.
+- **Framework wrappers add boxes.** Host elements, portals, scoped-style attributes, and
+  design-system primitives can add margins, `display`, or focus styles that are not in the
+  image. Inspect the rendered DOM, not only the source component.
 - **The image may be stale.** It can show content, states, or features the product no longer
   has. Confirm the source of truth before reproducing a bug.
 - **Licensing.** Do not lift copyrighted fonts, photos, or illustrations without permission;
@@ -265,16 +311,20 @@ Do not call it pixel-perfect at the structural level. Say which levels are verif
 
 For a page or component, deliver:
 
-1. The implementation files (HTML/CSS/JS or framework components).
-2. The exact render at the source viewport/DPR.
+1. The implementation files (HTML/CSS/JS, framework components, Flutter widgets, SwiftUI
+   views, Compose screens, etc.).
+2. The exact render at the source viewport, unit, and scale (CSS px/DPR, pt/displayScale, or
+   dp/density), with the device/emulator and text scale stated.
 3. The diff image and numeric mismatch.
 4. The measurement sheet/tokens.
-5. A list of inferred behavior (responsive, states, font/asset substitutions).
+5. A list of inferred behavior (responsive, states, font/asset substitutions, native vs custom
+   controls).
 6. Accessibility notes and any deliberate deviations.
 
 ## Quality gate
 
-- [ ] Viewport and DPR are known and the render uses them.
+- [ ] Platform, unit, viewport, scale, device, text scale, theme, and safe-area policy are known
+      and the render uses them.
 - [ ] Layout geometry is within 1px of the source (or the agreed tolerance).
 - [ ] Type uses measured size/weight/line-height/letter-spacing; font substitution is stated.
 - [ ] Colors are sampled from flat areas, not guessed.
@@ -284,3 +334,7 @@ For a page or component, deliver:
 - [ ] Hidden/responsive states are inferred explicitly, not silently invented.
 - [ ] Semantics and keyboard access are correct despite visual fidelity.
 - [ ] A diff image and mismatch number are provided; the fidelity claim matches the evidence.
+- [ ] If a framework/design system was used, its wrappers were checked for added geometry and
+      the claim is limited to the stack actually rendered and diffed.
+- [ ] Native controls vs custom drawing is an explicit decision, and text scaling was frozen or
+      tested rather than ignored.

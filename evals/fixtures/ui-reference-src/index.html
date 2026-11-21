@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Field Notes — Northwind</title>
+<style>
+  :root {
+    --paper: #f8f5ef;
+    --surface: #ffffff;
+    --ink: #1d2a22;
+    --muted: #6e756b;
+    --faint: #9a9588;
+    --border: #e3dccf;
+    --border-strong: #d5ccba;
+    --forest: #14342b;
+    --forest-soft: #1f4a3a;
+    --sand: #efe9dc;
+    --accent: #c75b39;
+    --accent-dark: #a84628;
+    --verified: #2f6b4f;
+    --verified-bg: #e7f0ea;
+    --draft: #8a5a12;
+    --draft-bg: #f7eedc;
+    --blocked: #9b2c2c;
+    --blocked-bg: #f6e4e1;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --serif: Georgia, "Times New Roman", serif;
+    --mono: "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { display: grid; grid-template-columns: 232px 1fr; height: 900px; }
+
+  /* Sidebar */
+  .sidebar {
+    background: var(--forest);
+    border-right: 1px solid #0e241d;
+    color: #e9e3d6;
+    padding: 26px 18px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 17px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .brand small {
+    display: block;
+    margin-top: 7px;
+    color: #9fb3a6;
+    font-family: var(--sans);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .nav { margin-top: 34px; display: flex; flex-direction: column; gap: 3px; }
+  .nav a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    color: #c7d4ca;
+    text-decoration: none;
+    font-size: 12.5px;
+    letter-spacing: 0.01em;
+  }
+  .nav a.active { background: #e9e3d6; color: var(--forest); font-weight: 600; }
+  .nav svg { width: 15px; height: 15px; flex: 0 0 15px; }
+  .nav .count {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #9fb3a6;
+  }
+  .nav a.active .count { color: var(--forest-soft); }
+
+  .sidebar-rule { height: 1px; background: #2a4a3d; margin: 22px 2px 18px; }
+  .sidebar-label {
+    color: #8fa698;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .projects { margin-top: 10px; display: flex; flex-direction: column; gap: 2px; }
+  .projects a {
+    color: #c7d4ca;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 6px 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .projects .dot { width: 6px; height: 6px; border-radius: 50%; background: #4f7a62; }
+  .projects a.current { color: #ffffff; background: #1d4234; }
+  .projects a.current .dot { background: #e7b06a; }
+
+  .user {
+    margin-top: auto;
+    border-top: 1px solid #2a4a3d;
+    padding-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e7b06a;
+    color: #3b2a16;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .user-name { font-size: 11.5px; color: #e9e3d6; line-height: 1.25; }
+  .user-role { font-size: 9.5px; color: #8fa698; letter-spacing: 0.04em; }
+
+  /* Main */
+  .main { display: flex; flex-direction: column; min-width: 0; }
+  .topbar {
+    height: 64px;
+    flex: 0 0 64px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 28px;
+    background: rgba(248, 245, 239, 0.86);
+  }
+  .crumb { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--faint); letter-spacing: 0.02em; }
+  .crumb strong { color: var(--ink); font-weight: 600; }
+  .crumb .slash { color: var(--border-strong); }
+  .topbar-spacer { flex: 1; }
+  .search {
+    width: 264px;
+    height: 32px;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    background: #fffdf9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 9px;
+    color: var(--faint);
+    font-size: 11.5px;
+  }
+  .search svg { width: 13px; height: 13px; }
+  .kbd {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: #7a7468;
+    background: var(--sand);
+    border: 1px solid #ddd4c3;
+    border-radius: 4px;
+    padding: 1px 5px;
+    line-height: 1.4;
+  }
+  .icon-button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    background: transparent;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+  }
+  .primary {
+    height: 32px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff8f2;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0 13px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .primary svg { width: 12px; height: 12px; }
+
+  .content {
+    flex: 1;
+    overflow: hidden;
+    padding: 24px 30px 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 286px;
+    gap: 24px;
+  }
+
+  .eyebrow {
+    color: var(--faint);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 34px;
+    line-height: 1.12;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin: 8px 0 8px;
+  }
+  .lede { color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 560px; margin: 0; }
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    color: var(--faint);
+    font-size: 10.5px;
+    letter-spacing: 0.01em;
+  }
+  .meta .sep { width: 3px; height: 3px; border-radius: 50%; background: var(--border-strong); }
+  .meta strong { color: var(--ink); font-weight: 600; }
+
+  .stats { display: grid; grid-template-columns: 1.45fr 0.8fr 0.8fr; gap: 12px; margin-top: 20px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(29, 42, 34, 0.05);
+  }
+  .stat { padding: 13px 14px 12px; }
+  .stat-label { color: var(--faint); font-size: 8.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .stat-value { font-family: var(--serif); font-size: 27px; line-height: 1; margin-top: 7px; letter-spacing: -0.02em; }
+  .stat-value small { font-size: 12px; color: var(--faint); font-family: var(--sans); letter-spacing: 0; }
+  .stat-note { color: var(--muted); font-size: 10.5px; margin-top: 7px; }
+  .delta { color: var(--blocked); font-family: var(--mono); font-size: 10px; }
+  .delta.up { color: var(--verified); }
+  .bar { height: 4px; border-radius: 99px; background: var(--sand); margin-top: 11px; overflow: hidden; }
+  .bar span { display: block; height: 100%; width: 68.5%; background: var(--forest-soft); border-radius: 99px; }
+  .bar-meta { display: flex; justify-content: space-between; margin-top: 6px; color: var(--faint); font-size: 9.5px; font-family: var(--mono); }
+
+  .table-card { margin-top: 16px; overflow: hidden; }
+  .table-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 11px;
+    border-bottom: 1px solid var(--border);
+  }
+  .table-title { font-family: var(--serif); font-size: 15px; }
+  .table-count {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    background: var(--sand);
+    border-radius: 99px;
+    padding: 2px 6px;
+  }
+  .table-head .link { margin-left: auto; color: var(--accent-dark); font-size: 10.5px; font-weight: 600; text-decoration: none; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left;
+    color: var(--faint);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    padding: 9px 14px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid #efe9dc; font-size: 11.5px; vertical-align: middle; }
+  tr:last-child td { border-bottom: 0; }
+  .site { display: flex; align-items: center; gap: 9px; }
+  .site-code { font-family: var(--mono); font-size: 9px; color: var(--faint); width: 34px; }
+  .site-name { font-weight: 600; color: var(--ink); }
+  .site-sub { color: var(--faint); font-size: 9.5px; margin-top: 1px; }
+  .observer { display: flex; align-items: center; gap: 7px; color: var(--muted); }
+  .observer .avatar { width: 20px; height: 20px; font-size: 7.5px; background: #dce6dd; color: #2e4a3a; }
+  .observer .avatar.b { background: #f0dfd3; color: #6b3b24; }
+  .observer .avatar.c { background: #e3e0ef; color: #433b63; }
+  .mono { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 19px;
+    padding: 0 7px;
+    border-radius: 99px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .pill i { width: 4.5px; height: 4.5px; border-radius: 50%; background: currentColor; }
+  .pill.verified { color: var(--verified); background: var(--verified-bg); }
+  .pill.draft { color: var(--draft); background: var(--draft-bg); }
+  .pill.blocked { color: var(--blocked); background: var(--blocked-bg); }
+  .row-arrow { color: var(--border-strong); font-size: 13px; text-align: right; }
+
+  /* Right column */
+  .rail { display: flex; flex-direction: column; gap: 14px; }
+  .rail-card { padding: 14px; }
+  .rail-title { display: flex; align-items: center; gap: 8px; font-family: var(--serif); font-size: 14px; margin-bottom: 12px; }
+  .live { width: 5px; height: 5px; border-radius: 50%; background: var(--verified); box-shadow: 0 0 0 3px #e7f0ea; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .event { display: grid; grid-template-columns: 13px 1fr auto; gap: 8px; padding: 0 0 13px; position: relative; }
+  .event:last-child { padding-bottom: 0; }
+  .event .line { position: absolute; left: 5px; top: 10px; bottom: -2px; width: 1px; background: var(--border); }
+  .event:last-child .line { display: none; }
+  .event .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sand); border: 1px solid var(--border-strong); margin-top: 4px; z-index: 1; }
+  .event .dot.green { background: var(--verified); border-color: var(--verified); }
+  .event .dot.orange { background: var(--accent); border-color: var(--accent); }
+  .event-text { font-size: 10.5px; line-height: 1.4; color: var(--muted); }
+  .event-text strong { color: var(--ink); font-weight: 600; }
+  .event-time { font-family: var(--mono); font-size: 8.5px; color: var(--faint); white-space: nowrap; padding-top: 2px; }
+
+  .attach { display: flex; flex-direction: column; gap: 8px; }
+  .file {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 7px 8px;
+    background: #fdfbf7;
+  }
+  .file-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background: var(--sand);
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .file-name { font-size: 10.5px; font-weight: 600; }
+  .file-meta { font-size: 8.5px; color: var(--faint); font-family: var(--mono); }
+  .file-size { margin-left: auto; font-family: var(--mono); font-size: 8.5px; color: var(--faint); }
+
+  .note {
+    background: #fbf1df;
+    border: 1px solid #ead9ba;
+    border-radius: 8px;
+    padding: 13px 14px;
+    position: relative;
+  }
+  .note:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 34px;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: #e7b06a;
+  }
+  .note-label { color: #9a6a2a; font-size: 8px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+  .note p { font-family: var(--serif); font-size: 12.5px; line-height: 1.45; color: #4a3a22; margin: 7px 0 0; }
+  .note-by { margin-top: 9px; color: #9a7a48; font-size: 8.5px; letter-spacing: 0.03em; }
+
+  .footer-note { margin-top: auto; color: var(--faint); font-size: 8.5px; letter-spacing: 0.03em; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Field Notes<small>Northwind Research</small></div>
+
+      <nav class="nav">
+        <a href="#" class="active">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2.5" width="12" height="11" rx="1.5"/><path d="M2 6h12M5.5 2.5v3.5"/></svg>
+          Today <span class="count">04</span>
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 5.5h4l1.2-2h2.6l1.2 2h3V13H2z"/></svg>
+          Observations <span class="count">38</span>
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4.5h10v8H3zM3 4.5l5-2 5 2M6 8h4"/></svg>
+          Sites <span class="count">12</span>
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 4h11v8h-11zM2.5 4l5 3.5L13 4"/></svg>
+          Archive
+        </a>
+      </nav>
+
+      <div class="sidebar-rule"></div>
+      <div class="sidebar-label">Projects</div>
+      <div class="projects">
+        <a href="#" class="current"><span class="dot"></span> Northwind</a>
+        <a href="#"><span class="dot"></span> Saltmarsh</a>
+        <a href="#"><span class="dot"></span> Kestrel Ridge</a>
+      </div>
+
+      <div class="user">
+        <div class="avatar">AM</div>
+        <div>
+          <div class="user-name">Ada Mercer</div>
+          <div class="user-role">Lead researcher</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">Projects <span class="slash">/</span> <strong>Northwind</strong></div>
+        <div class="topbar-spacer"></div>
+        <div class="search">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+          Search observations
+          <span class="kbd">⌘K</span>
+        </div>
+        <button class="icon-button" type="button" aria-label="Notifications">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 2.5a3 3 0 00-3 3v3l-1 2h8l-1-2v-3a3 3 0 00-3-3zM6.5 12.5a1.5 1.5 0 003 0"/></svg>
+        </button>
+        <button class="primary" type="button">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3v10M3 8h10"/></svg>
+          New entry
+        </button>
+      </header>
+
+      <div class="content">
+        <section>
+          <div class="eyebrow">Field study · 08 Oct 2026</div>
+          <h1>Northwind field study</h1>
+          <p class="lede">A two-week survey of soil, water, and canopy conditions across twelve sites in the northern watershed. Observations are reviewed by two researchers before they enter the permanent archive.</p>
+          <div class="meta">
+            <span><strong>12</strong> sites</span><span class="sep"></span>
+            <span><strong>38</strong> observations</span><span class="sep"></span>
+            <span><strong>2</strong> collaborators</span><span class="sep"></span>
+            <span>Updated 4 min ago</span>
+          </div>
+
+          <div class="stats">
+            <div class="card stat">
+              <div class="stat-label">Field coverage</div>
+              <div class="stat-value">68.5<small>%</small></div>
+              <div class="bar"><span></span></div>
+              <div class="bar-meta"><span>24 of 35 sites</span><span>+6 this week</span></div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">Open issues</div>
+              <div class="stat-value">07</div>
+              <div class="stat-note"><span class="delta">+2</span> since Monday</div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">Last sync</div>
+              <div class="stat-value">04<small>m</small></div>
+              <div class="stat-note"><span class="delta up">Healthy</span> · 38 records</div>
+            </div>
+          </div>
+
+          <div class="card table-card">
+            <div class="table-head">
+              <div class="table-title">Recent observations</div>
+              <div class="table-count">38</div>
+              <a href="#" class="link">View all →</a>
+            </div>
+            <table>
+              <thead>
+                <tr><th>Site</th><th>Observer</th><th>Logged</th><th>Status</th><th></th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="site"><span class="site-code">N-04</span><div><div class="site-name">Alder Creek</div><div class="site-sub">Riparian transect</div></div></div></td>
+                  <td><div class="observer"><span class="avatar">AM</span> Ada M.</div></td>
+                  <td><span class="mono">09:42</span></td>
+                  <td><span class="pill verified"><i></i>Verified</span></td>
+                  <td class="row-arrow">↗</td>
+                </tr>
+                <tr>
+                  <td><div class="site"><span class="site-code">N-07</span><div><div class="site-name">Birch Hollow</div><div class="site-sub">Canopy plot B</div></div></div></td>
+                  <td><div class="observer"><span class="avatar b">JT</span> Jonas T.</div></td>
+                  <td><span class="mono">09:18</span></td>
+                  <td><span class="pill draft"><i></i>Draft</span></td>
+                  <td class="row-arrow">↗</td>
+                </tr>
+                <tr>
+                  <td><div class="site"><span class="site-code">N-02</span><div><div class="site-name">Cold Spring</div><div class="site-sub">Water sample 03</div></div></div></td>
+                  <td><div class="observer"><span class="avatar">AM</span> Ada M.</div></td>
+                  <td><span class="mono">08:55</span></td>
+                  <td><span class="pill verified"><i></i>Verified</span></td>
+                  <td class="row-arrow">↗</td>
+                </tr>
+                <tr>
+                  <td><div class="site"><span class="site-code">N-11</span><div><div class="site-name">Mossy Bank</div><div class="site-sub">Erosion marker</div></div></div></td>
+                  <td><div class="observer"><span class="avatar c">RS</span> Rhea S.</div></td>
+                  <td><span class="mono">Yesterday</span></td>
+                  <td><span class="pill blocked"><i></i>Blocked</span></td>
+                  <td class="row-arrow">↗</td>
+                </tr>
+                <tr>
+                  <td><div class="site"><span class="site-code">N-09</span><div><div class="site-name">Fern Gully</div><div class="site-sub">Soil core 12</div></div></div></td>
+                  <td><div class="observer"><span class="avatar b">JT</span> Jonas T.</div></td>
+                  <td><span class="mono">Yesterday</span></td>
+                  <td><span class="pill verified"><i></i>Verified</span></td>
+                  <td class="row-arrow">↗</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="rail">
+          <div class="card rail-card">
+            <div class="rail-title"><span class="live"></span> This week</div>
+            <div class="timeline">
+              <div class="event"><span class="line"></span><span class="dot green"></span><div class="event-text"><strong>Ada</strong> verified Alder Creek</div><span class="event-time">09:42</span></div>
+              <div class="event"><span class="line"></span><span class="dot orange"></span><div class="event-text"><strong>Jonas</strong> uploaded 4 canopy photos</div><span class="event-time">09:18</span></div>
+              <div class="event"><span class="line"></span><span class="dot"></span><div class="event-text">Cold Spring flagged for review</div><span class="event-time">08:55</span></div>
+              <div class="event"><span class="line"></span><span class="dot"></span><div class="event-text"><strong>Rhea</strong> joined the project</div><span class="event-time">Mon</span></div>
+            </div>
+          </div>
+
+          <div class="card rail-card">
+            <div class="rail-title">Attachments</div>
+            <div class="attach">
+              <div class="file"><span class="file-icon">CSV</span><div><div class="file-name">soil-samples.csv</div><div class="file-meta">38 rows</div></div><span class="file-size">24 KB</span></div>
+              <div class="file"><span class="file-icon">PDF</span><div><div class="file-name">site-protocol.pdf</div><div class="file-meta">12 pages</div></div><span class="file-size">1.2 MB</span></div>
+              <div class="file"><span class="file-icon">JPG</span><div><div class="file-name">canopy-07.jpg</div><div class="file-meta">4032 × 3024</div></div><span class="file-size">3.8 MB</span></div>
+            </div>
+          </div>
+
+          <div class="note">
+            <div class="note-label">Field note</div>
+            <p>“Water level at Cold Spring is 18 cm below the October baseline. Recheck after the next rain.”</p>
+            <div class="note-by">Ada Mercer · 08 Oct</div>
+          </div>
+
+          <div class="footer-note"><span>Field Notes v2.4</span><span>Synced 09:42</span></div>
+        </aside>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
